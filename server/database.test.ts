@@ -53,4 +53,11 @@ describe('User CRUD', () => {
         );
         expect(responseTwo.mail).toBe(process.env.USER_EMAIL_ALT);
     });
-})
+
+    test("Delete User DELETE /user/:id", async () => {
+        const response : any = await users.deleteOne(
+            {username: process.env.USER_NAME}
+        );
+        expect(response.ok).toBe(1);
+    });
+});
