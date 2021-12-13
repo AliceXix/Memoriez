@@ -4,7 +4,7 @@ require('dotenv').config();
 describe('User CRUD', () => {
     let connection : any;
     let db : any;
-    const user : object = mongoose.model("test_"+process.env.COLLECTION,mongoose.Schema({
+    const users : any = mongoose.model("test_"+process.env.COLLECTION,mongoose.Schema({
         username: String,
         mail: String
     }));
@@ -23,5 +23,14 @@ describe('User CRUD', () => {
         await db.dropDatabase();
         await db.close();
         await connection.close();
+    });
+
+    test("Add User POST /user", async () => {
+        const response : any = await users.create({
+            username: process.env.USER_NAME,
+            mail: process.env.USER_EMAIL
+        });
+            await response.save();
+            expect(response.name).toBe(process.env.USER_NAME);
     });
 })
