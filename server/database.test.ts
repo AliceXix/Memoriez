@@ -38,4 +38,12 @@ describe('User CRUD', () => {
         const response : any = await users.find({});
         expect(response.length).toBeGreaterThan(0);
     });
+
+    test("Update User PUT /user/:id", async () => {
+        const response : any = await users.updateOne(
+            {username: process.env.USER_NAME},
+            {mail: process.env.USER_EMAIL_ALT}
+            );
+        expect(response.ok).toBeTruthy();
+    });
 })
