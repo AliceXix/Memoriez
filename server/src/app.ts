@@ -11,6 +11,6 @@ app.listen(port, err => {
 	return console.log(`server is listening on ${port}`);
 });
 
-app.post('/', (req, res, next) => {
-
+const register = app.post('/', (req, res, next) => {
+	
 });
