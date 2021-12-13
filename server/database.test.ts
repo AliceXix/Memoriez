@@ -46,4 +46,11 @@ describe('User CRUD', () => {
             );
         expect(response.ok).toBeTruthy();
     });
+
+    test("User update is correct", async () => {
+        const responseTwo : any = await users.findOne(
+            {username: process.env.USER_NAME}
+        );
+        expect(responseTwo.mail).toBe(process.env.USER_EMAIL_ALT);
+    });
 })
