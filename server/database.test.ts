@@ -33,4 +33,9 @@ describe('User CRUD', () => {
             await response.save();
             expect(response.name).toBe(process.env.USER_NAME);
     });
+
+    test("All Users GET /user", async () => {
+        const response : any = await users.find({});
+        expect(response.length).toBeGreaterThan(0);
+    });
 })
