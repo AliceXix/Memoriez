@@ -31,7 +31,12 @@ const login = app.post('/login', (req, res, next) => {
 	const username : string = req.body.username;
 
 	//check if user exists in db
-	doesUserExists(User, username)
+	try {
+		doesUserExists(User, username)
+	} catch (error) {
+		res.send(error)
+	}
 
 	//return response
-})
+	res.send('log this user in')
+});
