@@ -16,11 +16,21 @@ app.listen(port, err => {
 
 const register = app.post('/', (req, res, next) => {
 	// Read input from request
-	const userInput = req.body;
+	const userInput : object = req.body;
+
 	// Create user from request
 	createUser(User, req.body);
-	
 
 	// Return response from created user
-
+	res.send(`this is the new created user`)
 });
+
+const login = app.post('/login', (req, res, next) => {
+	//read input from request
+	const userInput : object = req.body;
+
+	//check if user exists in db
+	
+
+	//return response
+})
