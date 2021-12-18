@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 import { createUser } from './src/services/createUser';
+import { doesUserExists } from './src/services/loginUser';
 
 describe('User CRUD', () => {
     let connection : any;
@@ -27,13 +28,20 @@ describe('User CRUD', () => {
     });
 
     test("Add User POST /user", async () => {
-        const userInput = {
+        const userInput : any  = {
             username: 'Alice',
             mail: 'alice@alice.com'
         };
 
         const createdUser : any = await createUser(userModel, userInput);
         expect(createdUser.username).toBe(userInput.username);
+    });
+
+    test("Login User POST /user", async() => {
+        const username : string = 'Alice'
+
+        const userFromDB : any = await doesUserExists(userModel, username);
+        expect(userFromDB.username).toBe(username)
     });
 
 });
