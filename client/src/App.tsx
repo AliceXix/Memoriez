@@ -10,10 +10,10 @@ function App() {
           Register here!
         </p>
         <form>
-          <label>Username:</label>
+          <label htmlFor='username'>Username:</label>
           <input type="text"></input>
           <br></br>
-          <label>Mail:</label>
+          <label htmlFor='mail'>Mail:</label>
           <input type="text"></input>
         </form>
       </header>
