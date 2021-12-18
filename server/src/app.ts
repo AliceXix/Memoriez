@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 
 import { createUser } from './services/createUser';
+import { doesUserExists } from './services/loginUser';
 const User = require('./models/user.model');
 
 //@ts-ignore
@@ -27,10 +28,10 @@ const register = app.post('/', (req, res, next) => {
 
 const login = app.post('/login', (req, res, next) => {
 	//read input from request
-	const userInput : object = req.body;
+	const username : string = req.body.username;
 
 	//check if user exists in db
-	
+	doesUserExists(User, username)
 
 	//return response
 })
