@@ -11,10 +11,12 @@ function App() {
         </p>
         <form>
           <label htmlFor='username'>Username:</label>
-          <input type="text"></input>
+          <input type={'text'}></input>
           <br></br>
           <label htmlFor='mail'>Mail:</label>
-          <input type="text"></input>
+          <input type={'text'}></input>
+          <br></br>
+          <input type={'submit'} value={'submit'}></input>
         </form>
       </header>
     </div>
