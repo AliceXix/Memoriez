@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+import { createUser } from './src/services/createUser';
+
 describe('User CRUD', () => {
     let connection : any;
     let db : any;
-    const users : any = mongoose.model("test_"+process.env.COLLECTION,mongoose.Schema({
+    const userModel : any = mongoose.model("test_"+process.env.COLLECTION,mongoose.Schema({
         username: String,
         mail: String
     }));
@@ -12,7 +14,7 @@ describe('User CRUD', () => {
     beforeAll(async () => {
         connection = await
     mongoose.connect('mongodb://localhost:27017/test_'+process.env.DATABASE,{useNewUrlParser: true, useUnifiedTopology: true});
-        let db : any = mongoose.connection;
+        db = mongoose.connection;
         const collection = process.env.COLLECTION;
         await db.createCollection(collection);
     });
@@ -22,42 +24,16 @@ describe('User CRUD', () => {
         await db.dropCollection(collection);
         await db.dropDatabase();
         await db.close();
-        await connection.close();
     });
 
     test("Add User POST /user", async () => {
-        const response : any = await users.create({
-            username: process.env.USER_NAME,
-            mail: process.env.USER_EMAIL
-        });
-            await response.save();
-            expect(response.name).toBe(process.env.USER_NAME);
+        const userInput = {
+            username: 'Alice',
+            mail: 'alice@alice.com'
+        };
+
+        const createdUser : any = await createUser(userModel, userInput);
+        expect(createdUser.username).toBe(userInput.username);
     });
 
-    test("All Users GET /user", async () => {
-        const response : any = await users.find({});
-        expect(response.length).toBeGreaterThan(0);
-    });
-
-    test("Update User PUT /user/:id", async () => {
-        const response : any = await users.updateOne(
-            {username: process.env.USER_NAME},
-            {mail: process.env.USER_EMAIL_ALT}
-            );
-        expect(response.ok).toBeTruthy();
-    });
-
-    test("User update is correct", async () => {
-        const responseTwo : any = await users.findOne(
-            {username: process.env.USER_NAME}
-        );
-        expect(responseTwo.mail).toBe(process.env.USER_EMAIL_ALT);
-    });
-
-    test("Delete User DELETE /user/:id", async () => {
-        const response : any = await users.deleteOne(
-            {username: process.env.USER_NAME}
-        );
-        expect(response.ok).toBe(1);
-    });
 });
