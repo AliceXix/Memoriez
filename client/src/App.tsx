@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { handleFormSubmit } from './handleFormSubmit'
 
 function App() {
   return (
@@ -9,14 +9,14 @@ function App() {
         <p>
           Register here!
         </p>
-        <form>
+        <form onSubmit={handleFormSubmit}>
           <label htmlFor='username'>Username:</label>
-          <input type={'text'}></input>
+          <input id='username' type={'text'}></input>
           <br></br>
           <label htmlFor='mail'>Mail:</label>
-          <input type={'text'}></input>
+          <input id='mail' type={'text'}></input>
           <br></br>
-          <input type={'submit'} value={'submit'}></input>
+          <input type={'submit'} value={'Register'}></input>
         </form>
       </header>
     </div>
