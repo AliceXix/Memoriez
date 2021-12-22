@@ -15,7 +15,7 @@ app.listen(port, err => {
 	return console.log(`server is listening on ${port}`);
 });
 
-const register = app.post('/', (req, res, next) => {
+const register = app.post('/api/register', (req, res, next) => {
 	// Read input from request
 	const userInput : object = req.body;
 
@@ -26,7 +26,7 @@ const register = app.post('/', (req, res, next) => {
 	res.send(`this is the new created user`)
 });
 
-const login = app.post('/login', (req, res, next) => {
+const login = app.post('/api/login', (req, res, next) => {
 	//read input from request
 	const username : string = req.body.username;
 
