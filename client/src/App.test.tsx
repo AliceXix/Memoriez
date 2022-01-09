@@ -1,7 +1,8 @@
 import React from 'react';
+import App from './App';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import App from './App';
+
 import { handleFormSubmit } from './handleFormSubmit';
 
 beforeAll(() => jest.spyOn(window, 'fetch'))
@@ -13,7 +14,7 @@ test('renders form', () => {
 });
 
 test('clicking "register" registers new user', async () => {
-  const registerUser = handleFormSubmit()
+  
   render(<App />);
 
   let mockFetch : any = window.fetch;
@@ -28,10 +29,12 @@ test('clicking "register" registers new user', async () => {
     '/register',
     expect.objectContaining({
       method: 'POST',
-      body: JSON.stringify(registerUser),
+      //body: JSON.stringify(registerUser),
     }),
   )
+
+  // fetch('/register', {method : 'POST', body: })
   
   expect(window.fetch).toHaveBeenCalledTimes(1)
-  expect(await screen.findByText(/registered/i)).toBeInTheDocument()
+  //expect(await screen.findByText(/registered/i)).toBeInTheDocument()
 })

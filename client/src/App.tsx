@@ -9,7 +9,7 @@ function App() {
         <p>
           Register here!
         </p>
-        <form onSubmit={async e => { e.preventDefault(); await handleFormSubmit(); }}>
+        <form onSubmit={(e) => {e.preventDefault(); handleFormSubmit()}}>
           <label htmlFor='username'>Username:</label>
           <input id='username' type={'text'}></input>
           <br></br>
