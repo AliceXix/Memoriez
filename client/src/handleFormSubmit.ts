@@ -1,5 +1,4 @@
 export async function handleFormSubmit () {
-    console.log('blub');
 
     let userInfo : object = {
         username: 'hello',
@@ -22,7 +21,6 @@ export async function handleFormSubmit () {
                 } else {
                     console.log("api call to register new user was successful")
                 }
-                console.log('blub');
                 return response.json();
             })
             .then(data => {
@@ -33,13 +31,3 @@ export async function handleFormSubmit () {
                 console.log(err)
             });
 }
-
-
-// export function handleFormSubmit(url: any) {
-//   return fetch(url).then((response) => response.json());
-// }
-
-
-// handleFormSubmit("/api/register").then((res) =>
-//   console.log(res)
-// );

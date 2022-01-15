@@ -42,6 +42,8 @@ const register = app.post('/api/register', (req, res, next) => {
 	res.send({message:"success"})
 });
 
+
+
 const login = app.post('/api/login', (req, res, next) => {
 	//read input from request
 	const username : string = req.body.username;
