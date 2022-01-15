@@ -1,6 +1,6 @@
-export async function createUser(userModel, userInput: any) {
+export async function createUser(userModel:any, userInput:any) {
 
-    const newUser : object = await userModel.create({
+    const newUser : any = await userModel.create({
         username: userInput.username,
         mail: userInput.mail,
     })

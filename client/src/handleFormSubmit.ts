@@ -1,17 +1,15 @@
-export async function handleFormSubmit () {
+export async function handleFormSubmit (userInfo:any) {
 
-    let userInfo : object = {
-        username: 'hello',
-        mail: 'hello@'
-        //TODO: req.body.properties
+    // let userInfo : any = {
+    //     username: username,
+    //     mail: mail
+    // }
 
-    }
-
-    console.log(userInfo)
-
-    return fetch('http://localhost:3000/api/register', {
+    await fetch('http://localhost:3000/api/register', {
+        headers: {
+            "Content-type": "application/json",
+        },
         method: 'POST',
-        
         body: JSON.stringify(userInfo)
     })
         .then(response => {
