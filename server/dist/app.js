@@ -8,6 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const app = (0, express_1.default)();
 const port = 3000;
+const createUser_1 = require("./services/createUser");
 const loginUser_1 = require("./services/loginUser");
 const User = require('./models/user.model');
 app.use((0, cors_1.default)({
@@ -24,9 +25,14 @@ app.listen(port, err => {
 });
 const register = app.post('/api/register', (req, res, next) => {
     // Read input from request
-    //const userInput : object = req.body;
+    const userInput = req.body;
     // Create user from request
-    //createUser(User, userInput);
+    try {
+        (0, createUser_1.createUser)(User, userInput);
+    }
+    catch (err) {
+        console.log(err);
+    }
     // Return response from created user
     res.send({ message: "success" });
 });

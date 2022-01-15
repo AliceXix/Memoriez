@@ -6,8 +6,9 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",
-        "skipDefaultLibCheck": true
+        "skipDefaultLibCheck": true,
     },
+    "typeAcquisition": { "include": ["jest"]},
     "lib": [
         "es2015"
     ],

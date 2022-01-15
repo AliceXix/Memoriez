@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import './db';
 
 const app = express();
 const port = 3000;
@@ -30,7 +31,12 @@ const register = app.post('/api/register', (req, res, next) => {
 	const userInput : object = req.body;
 
 	// Create user from request
-	createUser(User, userInput);
+	try {
+		createUser(User, userInput);
+	}
+	catch(err: unknown) {
+		console.log(err)
+	}
 
 	// Return response from created user
 	res.send({message:"success"})

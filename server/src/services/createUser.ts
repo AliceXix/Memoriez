@@ -1,8 +1,12 @@
 export async function createUser(userModel, userInput: any) {
-    const newUser : object = userModel.create({
-        username : String = userInput.username,
-        mail : String = userInput.mail,
+    console.log('printing2:')
+    console.log(userInput.username)
+    console.log(userInput.mail)
+    const newUser : object = await userModel.create({
+        username: userInput.username,
+        mail: userInput.mail,
     })
+    console.log('printing:' + newUser)
     return newUser;
 }
 

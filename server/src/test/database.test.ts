@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-import { createUser } from './src/services/createUser';
-import { doesUserExists } from './src/services/loginUser';
+import { createUser } from '../services/createUser';
+import { doesUserExists } from '../services/loginUser';
 
 describe('User CRUD', () => {
     let connection : any;
