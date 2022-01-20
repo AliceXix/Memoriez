@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { handleFormSubmit } from '../handleFormSubmit';
-//import './registerFrom.css'
+import { handleRegister } from '../handleRegister';
 
 export default function RegisterForm() {
 
@@ -17,7 +16,7 @@ const userInfo = {mail: mail, username: username}
         <p>
           Register here!
         </p>
-        <form onSubmit={(e) => {e.preventDefault(); handleFormSubmit(userInfo)}}>
+        <form onSubmit={(e) => {e.preventDefault(); handleRegister(userInfo)}}>
           <label htmlFor='username'>Username:</label>
           <input id='username' type={'text'} onChange={(e) => setUsername(e.target.value)}></input>
           <br></br>

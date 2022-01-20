@@ -46,11 +46,11 @@ const register = app.post('/api/register', (req, res, next) => {
 
 const login = app.post('/api/login', (req, res, next) => {
 	//read input from request
-	const username : string = req.body.username;
+	const userInput : string = req.body;
 
 	//check if user exists in db
 	try {
-		doesUserExists(User, username)
+		doesUserExists(User, userInput)
 	} catch (error) {
 		res.send(error)
 	}

@@ -1,11 +1,6 @@
-export async function handleFormSubmit (userInfo:any) {
+export async function handleLogin (userInfo:any) {
 
-    // let userInfo : any = {
-    //     username: username,
-    //     mail: mail
-    // }
-
-    await fetch('http://localhost:3000/api/register', {
+    await fetch('http://localhost:3000/api/login', {
         headers: {
             "Content-type": "application/json",
         },
@@ -17,7 +12,7 @@ export async function handleFormSubmit (userInfo:any) {
                     console.log("looks like something went wrong here")
                     return
                 } else {
-                    console.log("api call to register new user was successful")
+                    console.log("you are now logged in")
                 }
                 return response.json();
             })
