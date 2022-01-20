@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { handleLogin } from '../handleLogin';
+import { handleLogin } from '../handlers/handleLogin';
 
 export default function LoginForm() {
 
