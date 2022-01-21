@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { handleRegister } from '../handleRegister';
+import { handleRegister } from '../handlers/handleRegister';
 
 export default function RegisterForm() {
 

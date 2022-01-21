@@ -3,7 +3,7 @@ import App from './App';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { handleRegister } from './handleRegister';
+import { handleRegister } from './handlers/handleRegister';
 
 beforeAll(() => jest.spyOn(window, 'fetch'))
 
