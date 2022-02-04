@@ -1,17 +1,13 @@
+//let { Schema, model} = require("mongoose")
+
 const personSchema : object = new Schema(
     {
-        username: {
+        name: {
             type: String
         },
-        mail: {
-            type: String
-        },
-        password: {
-            type: String
-        }
     },
     {
-        circle : {
+        relationship : {
             type: [{type : Schema.Types.ObjectId, ref: 'Relationship'}]
         }
     }
@@ -19,4 +15,4 @@ const personSchema : object = new Schema(
 
 const Person : Object = model("Person", personSchema);
 
-module.exports = User;
+module.exports = Person;

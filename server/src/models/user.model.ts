@@ -14,7 +14,7 @@ const userSchema : object = new Schema(
     },
     {
         circle : {
-            type: [{type : Schema.Types.ObjectId, ref: 'Relationship'}]
+            type: [{type : Schema.Types.ObjectId, ref: 'Person'}]
         }
     }
 );
