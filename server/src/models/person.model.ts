@@ -1,6 +1,4 @@
-let { Schema, model} = require("mongoose")
-
-const userSchema : object = new Schema(
+const personSchema : object = new Schema(
     {
         username: {
             type: String
@@ -19,6 +17,6 @@ const userSchema : object = new Schema(
     }
 );
 
-const User : Object = model("User", userSchema);
+const Person : Object = model("Person", personSchema);
 
 module.exports = User;
