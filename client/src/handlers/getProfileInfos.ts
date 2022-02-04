@@ -1,25 +1,25 @@
-export async function handleLogin (userInfo:any) {
+export async function getProfileInfos (URLInput:any) {
+    console.log("this is from getProfileInfos")
+    console.log(URLInput)
 
-    await fetch('http://localhost:3000/api/login', {
+    await fetch(`http://localhost:3000/api/dashboard/${URLInput}`, {
         headers: {
             "Content-type": "application/json",
         },
-        method: 'POST',
-        body: JSON.stringify(userInfo)
+        method: 'GET',
+        // body: JSON.stringify(URLInput)
     })
         .then(response => {
                 if (response.status !== 200) {
                     console.log("looks like something went wrong here")
                     return
                 } else {
-                    console.log("you are now logged in")
+                    console.log("this is your dashboard!")
                 }
                 return response.json();
             })
             .then(data => {
                     console.log(data)
-                    //setState user
-                    //useEffect look it up
                     //TODO: res.send "registered"
             })
             .catch(err => {
