@@ -1,6 +1,13 @@
-let { Schema, model} = require("mongoose")
+import { Schema, model } from "mongoose";
 
-const userSchema : object = new Schema(
+interface UserType {
+    username: string,
+    mail: string,
+    password: string,
+    circle: any[]
+}
+
+const userSchema = new Schema<UserType>(
     {
         username: {
             type: String
@@ -10,15 +17,14 @@ const userSchema : object = new Schema(
         },
         password: {
             type: String
-        }
-    },
-    {
+        },
         circle : {
             type: [{type : Schema.Types.ObjectId, ref: 'Person'}]
         }
     }
 );
 
-const User : Object = model("User", userSchema);
+const User= model<UserType>("User", userSchema);
 
-module.exports = User;
+//module.exports = User;
+export default User
