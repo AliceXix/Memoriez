@@ -93,23 +93,30 @@ const getInfosFromDB = app.get("/api/dashboard/:id", async (req, res, next) => {
 
     if (!user) {
       res.send({ message: "this user does not exist" });
-    } else {
-       res.send({ user: `${user}` });
     }
 
   //no you do not need a "getPerson" because Person is part of the property circle of User
 
   //------------------//
 
-//   async function getMemories(memoryModel: typeof Memory, id: any) {
-//     let memories = memoryModel.find({ author: `${id}` });
-//     return memories;
-//   }
+  async function getMemories(memoryModel: typeof Memory, id: any) {
+    let memories = memoryModel.find({ author: `${id}` });
+    return memories;
+  }
 
-//   let memory: any = await getMemories(Memory, id.id);
+  let memory: any = await getMemories(Memory, id.id);
 
-//   console.log("this comes from api dashboard and are the memories");
-//   console.log(memory);
+  console.log("this comes from api dashboard and are the memories");
+  console.log(memory);
+
+    if (!memory) {
+      res.send({ message: "this user does not have any memories yet" });
+    } 
+
+
+
+      res.send({ memory: `${memory}`,  user: `${user}` });
+    
 });
 
 const getPersonDetails = app.get("/api/person/:id", async (req, res, next) => {
