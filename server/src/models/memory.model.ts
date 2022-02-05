@@ -1,24 +1,31 @@
-const memorySchema : object = new Schema(
-    {
-        title: {
-            type: String
-        },
-        text: {
-            type: String
-        },
+import { Schema, model } from "mongoose";
+//import { UserType } from "./user.model";
+//import { PersonType } from "./person.model";
+
+interface MemoryType {
+  title: string,
+  text: string,
+  author: any[], //TODO
+  person: any[] //TODO
+}
+
+const memorySchema = new Schema<MemoryType>(
+  {
+    title: {
+      type: String,
     },
-    {
-        author : {
-            type: [{type : Schema.Types.ObjectId, ref: 'User'}]
-        }
+    text: {
+      type: String,
     },
-    {
-        person : {
-            type: [{type : Schema.Types.ObjectId, ref: 'Person'}]
-        }
-    }
+    author: {
+      type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    },
+    person: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Person" }],
+    },
+  }
 );
 
-const Memory : Object = model("Memory", memorySchema);
+const Memory = model<MemoryType>("Memory", memorySchema);
 
-module.exports = Memory;
+export default Memory;
