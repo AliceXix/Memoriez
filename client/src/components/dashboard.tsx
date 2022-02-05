@@ -1,48 +1,42 @@
 import { useParams } from "react-router-dom";
 //import { getProfileInfos } from "../handlers/getProfileInfos";
+import * as React from "react";
 
- interface userData {
-   id: string;
- }
+interface userData {
+  id: string;
+}
 
 export default function Dashboard() {
+  const [user, setUser] = React.useState("");
 
-    let { id } = useParams();
+  let { id } = useParams();
 
-    console.log(id);
+  async function getProfileInfos(URLInput: any) {
+    console.log("this is from getProfileInfos");
+    console.log(URLInput);
 
+    const fetcher = await fetch(
+      `http://localhost:3000/api/dashboard/${URLInput}`,
+      {
+        method: "GET",
+      }
+    );
+    const data: userData = await fetcher.json();
+    setUser(JSON.stringify(data));
+    return data;
+  }
 
-    async function getProfileInfos(URLInput: any) {
-      console.log("this is from getProfileInfos");
-      console.log(URLInput);
+  const theResult = getProfileInfos(id);
 
-      const data = await fetch(
-        `http://localhost:3000/api/dashboard/${URLInput}`,
-        //`http://localhost:3000/api/dashboard`,
-        {
-          method: "GET",
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
-    //   const data: userData = await fetcher.json();
-      console.log(`this is from the function getProfileInfo ${data}`)
-      console.log(data)
-      return data;
-    };
+  console.log(theResult);
 
-    console.log( getProfileInfos(id));
- 
-
-return (
-
+  return (
     <>
-        <p>hello, this is your dashboard.</p>
-        <br/>
-        <h3>My id:</h3>
-        <p>{id}</p>
-        {/* <p>{async () => {await getProfileInfos(id)}}</p> */}
+      <p>hello, this is your dashboard.</p>
+      <br />
+      <h3>My id:</h3>
+      <p>{id}</p>
+      <p>this is the user: {user}</p>
     </>
- )
+  );
 }
