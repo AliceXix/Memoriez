@@ -10,9 +10,6 @@ export default function LoginForm() {
   const [username, setUsername] = React.useState("");
   const userInfo: {mail: string, username: string} = { mail: mail, username: username };
   const navigate = useNavigate();
-  //const [newUrl, setUrl] = React.useState("")
-
-  //useHistory.push(id)
 
   async function handleLogin(userInfo: any) {
     const fetcher = await fetch("http://localhost:3000/api/login", {
@@ -60,7 +57,6 @@ export default function LoginForm() {
           </form>
         </header>
       </div>
-      {/* <Navigate to="/dashboard/:id"/> */}
     </>
   );
 }
