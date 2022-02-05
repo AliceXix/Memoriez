@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-interface RelationshipType {
+export interface RelationshipType {
   type: string
 }
 
