@@ -10,8 +10,8 @@ import { createUser } from "./services/createUser";
 //import { doesUserExists } from './services/loginUser';
 import { getUserFromDB } from "./services/getUserFromDB";
 import User from "./models/user.model";
-const Memory = require("./models/memory.model");
-const Person = require("./models/person.model");
+import Memory from "./models/memory.model";
+import Person from "./models/person.model";
 
 app.use(
   cors({
@@ -97,8 +97,8 @@ app.get("/api/dashboard/:id", async (req, res, next) => {
 
   //------------------//
 
-  async function getMemories(personModel: any, id: any) {
-    let memories = personModel.find({ author: `${id}` });
+  async function getMemories(memoryModel: typeof Memory, id: any) {
+    let memories = memoryModel.find({ author: `${id}` });
     return memories;
   }
 
