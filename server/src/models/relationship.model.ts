@@ -1,9 +1,16 @@
-const relationshipSchema: object = new Schema({
+import { Schema, model } from "mongoose";
+
+interface RelationshipType {
+  type: string
+}
+
+const relationshipSchema = new Schema<RelationshipType>({
   type: {
     type: String,
   },
 });
 
-const Relationship: Object = model("Relationship", relationshipSchema);
+const Relationship = model<RelationshipType>("Relationship", relationshipSchema);
 
-module.exports = Relationship;
+
+export default Relationship;
