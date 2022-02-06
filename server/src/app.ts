@@ -1,12 +1,11 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
+import bodyParser, { text } from "body-parser";
 import "./db";
 
 const app = express();
 const port = 3000;
 
-import { createUser } from "./services/createUser";
 //import { doesUserExists } from './services/loginUser';
 import { getUserFromDB } from "./services/getUserFromDB";
 import User from "./models/user.model";
@@ -30,20 +29,23 @@ app.listen(port, (err) => {
   return console.log(`server is listening on ${port}`);
 });
 
-const register = app.post("/api/register", (req, res, next) => {
+const register = app.post("/api/register", async (req, res, next) => {
   // Read input from request
-  const userInput: object = req.body;
-  console.log(userInput);
+  const userInput = req.body;
 
-  // Create user from request
-  try {
-    createUser(User, userInput);
-  } catch (err: unknown) {
-    console.log(err);
+  async function createUser(userModel: any, userInput: any) {
+    const newUser: any = await userModel.create({
+      username: userInput.username,
+      mail: userInput.mail,
+    });
+
+    return newUser;
   }
 
+  const newUser = await createUser(User, userInput)
+
   // Return response from created user
-  res.send({ message: "success" });
+  res.send({ user: `${newUser}` });
 });
 
 const login = app.post("/api/login", async (req, res, next) => {
@@ -129,11 +131,33 @@ const getPersonDetails = app.get("/api/person/:id", async (req, res, next) => {
     }
 
   async function getPersonById(model, id) {
-    let person = await model.findById({ id });
+    let person = await model.findById( {id} );
     return person;
   }
 
-
-
   let personDetails = await getPersonById(Person, id);
 });
+
+const addMemory = app.post("/api/add-memory", async (req, res, next) => {
+  const id = req.params;
+  const userInput = req.body;
+
+  if (!id) {
+    res.send({ message: "something went wrong big time" });
+  }
+
+  async function addMemory(model, input) {
+
+    const newMemory = await model.create({
+      title: input.title,
+      text: input.text,
+      author: input.author,
+      person: input.person
+    })
+    return newMemory;
+  }
+
+  const newMemory = await addMemory(Memory, userInput);
+
+  res.send({ memory: `${newMemory}`})
+})
