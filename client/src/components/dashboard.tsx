@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 //import { getProfileInfos } from "../handlers/getProfileInfos";
 import * as React from "react";
 import PersonWidget from './person.widget';
@@ -9,6 +9,7 @@ interface userData {
 
 export default function Dashboard() {
   const [user, setUser] = React.useState("");
+  const navigate = useNavigate();
 
   let { id } = useParams();
 
@@ -40,7 +41,9 @@ export default function Dashboard() {
           <br />
           <button
           className="button-to-text"
-          onClick={() => {console.log("button has been clicked");}}>Add person</button>
+          onClick={() => {
+            console.log("button has been clicked");
+            navigate('/add-person')}}>Add person</button>
         </div>
         <section className="widgets">
           <PersonWidget />
