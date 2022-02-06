@@ -5,6 +5,7 @@ import LoginForm from './components/loginForm';
 import Dashboard from './components/dashboard';
 import PersonDetails from './components/person.details';
 import AddMemoryForm from './components/AddMemoryForm';
+import AddPersonForm from './components/addPersonForm';
 
 export default function App() {
 
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/dashboard/:id" element={<Dashboard />} />
       <Route path="/person/:id" element={<PersonDetails />} />
       <Route path="/add-memory" element={<AddMemoryForm />} />
+      <Route path="/add-person" element={<AddPersonForm/>}/>
     </Routes>
   );
 }
