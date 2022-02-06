@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 //import { UserType } from "./user.model";
 //import { PersonType } from "./person.model";
 
-interface MemoryType {
+export interface MemoryType {
   title: string,
   text: string,
   author: any[], //TODO
