@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 //import { getProfileInfos } from "../handlers/getProfileInfos";
 import * as React from "react";
+import PersonWidget from './person.widget';
 
 interface userData {
   id: string;
@@ -31,12 +32,21 @@ export default function Dashboard() {
   console.log(theResult);
 
   return (
+    //TODO: put name of user above person widgets
     <>
-      <p>hello, this is your dashboard.</p>
-      <br />
-      <h3>My id:</h3>
-      <p>{id}</p>
-      <p>this is the user: {user}</p>
+      <main className="main">
+        <div className="grouping-left">
+          <h1>Name of user</h1>
+          <br />
+          <button
+          className="button-to-text"
+          onClick={() => {console.log("button has been clicked");}}>Add person</button>
+        </div>
+        <section className="widgets">
+          <PersonWidget />
+        </section>
+      </main>
+      {/* <p>this is the user: {user}</p> */}
     </>
   );
 }
