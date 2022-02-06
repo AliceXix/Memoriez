@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import MemoryWidget from "./memory.widget";
 
 export default function PersonDetails() {
 
@@ -23,7 +24,7 @@ return (
       </section>
       <section className="widgets">
         <aside className="widget">
-          <p>memory widget element here!</p>
+          <MemoryWidget/>
         </aside>
       </section>
     </main>
