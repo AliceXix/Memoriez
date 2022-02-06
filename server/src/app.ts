@@ -139,12 +139,12 @@ const getPersonDetails = app.get("/api/person/:id", async (req, res, next) => {
 });
 
 const addMemory = app.post("/api/add-memory", async (req, res, next) => {
-  const id = req.params;
+  //const id = req.params;
   const userInput = req.body;
 
-  if (!id) {
-    res.send({ message: "something went wrong big time" });
-  }
+  // if (!id) {
+  //   res.send({ message: "something went wrong big time" });
+  // }
 
   async function addMemory(model, input) {
 
@@ -160,4 +160,25 @@ const addMemory = app.post("/api/add-memory", async (req, res, next) => {
   const newMemory = await addMemory(Memory, userInput);
 
   res.send({ memory: `${newMemory}`})
-})
+});
+
+const addPerson = app.post("/api/add-person", async (req, res, next) => {
+  //const id = req.params;
+  const userInput = req.body;
+
+  // if (!id) {
+  //   res.send({ message: "something went wrong big time" });
+  // }
+
+  async function addPerson(model, input) {
+    const newMemory = await model.create({
+      name: input.name,
+      relationship: input.relationship,
+    });
+    return newMemory;
+  }
+
+  const newPerson = await addPerson(Person, userInput);
+
+  res.send({ person: `${newPerson}` });
+});
