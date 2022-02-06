@@ -3,6 +3,21 @@ body {
     all: unset;
 }
 
+label {
+  margin-bottom: 0.3em;
+  color: #571D0F;
+}
+
+input {
+  max-width: 40%;
+}
+
+.box h2 {
+  color: #571D0F;
+}
+
+/* ------------------------------- */
+
 .main {
     display: flex;
     margin-top: 15em;
@@ -87,4 +102,11 @@ body {
 
 .grouping-left {
   margin: 0 0 5em 5em;
+}
+
+.input {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  margin: 2em 0 2em 0;
 }
