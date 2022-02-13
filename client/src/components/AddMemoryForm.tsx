@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useParams } from "react-router-dom";
 
 export default function AddMemoryForm() {
   const [title, setTitle] = React.useState("");
@@ -8,8 +9,11 @@ export default function AddMemoryForm() {
     text: text,
   };
 
-  async function addMemory(input: any) {
-    const fetcher = await fetch("http://localhost:3000/api/add-memory", {
+  let { id } = useParams();
+  console.log(id)
+
+  async function addMemory(id: any, input: any) {
+    const fetcher = await fetch(`http://localhost:3000/api/add-memory/${id}`, {
       headers: {
         "Content-type": "application/json",
       },
@@ -27,7 +31,7 @@ export default function AddMemoryForm() {
         onSubmit={async (e) => {
           e.preventDefault();
           console.log("we have submitted form and are ready for API call");
-          const newMemory = await addMemory(userInput);
+          const newMemory = await addMemory(id, userInput);
           console.log("here comes the output off calling API");
           console.log(newMemory);
         }}
