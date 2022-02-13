@@ -1,55 +1,96 @@
 import { useNavigate, useParams } from "react-router-dom";
 //import { getProfileInfos } from "../handlers/getProfileInfos";
 import * as React from "react";
-import PersonWidget from './person.widget';
+import PersonWidget from "./person.widget";
+import { personData } from "./person.details";
 
-interface userData {
-  id: string;
-}
+export interface userData {
+  memory: string[];
+  user: {
+    circle: personData[];
+    _id: string;
+    username: string;
+    mail: string;
+  };
+  _id: string;
+};
 
 export default function Dashboard() {
-  const [user, setUser] = React.useState("");
+  const [user, setUser] = React.useState<null | userData>();
   const navigate = useNavigate();
 
   let { id } = useParams();
 
-  async function getProfileInfos(URLInput: any) {
-    console.log("this is from getProfileInfos");
-    console.log(URLInput);
-
+  async function getProfileInfos(id: any) {
     const fetcher = await fetch(
-      `http://localhost:3000/api/dashboard/${URLInput}`,
+      `http://localhost:3000/api/dashboard/${id}`,
       {
         method: "GET",
       }
     );
     const data: userData = await fetcher.json();
-    setUser(JSON.stringify(data));
+    setUser(data);
     return data;
   }
 
-  const theResult = getProfileInfos(id);
+  React.useEffect(() => {
+    getProfileInfos(id);
+  }, [id]);
 
-  console.log(theResult);
+  console.log(JSON.stringify(user?.user._id))
+
+  // const arr = [
+  //   {
+  //     _id: "1234",
+  //     name: "bob",
+  //     relationship: ["friend"],
+  //     memories: ["some text"],
+  //   },
+  //   {
+  //     _id: "5678",
+  //     name: "tim",
+  //     relationship: ["mom"],
+  //     memories: ["some text"],
+  //   },
+  //   {
+  //     _id: "8912",
+  //     name: "junka",
+  //     relationship: ["girlfriend"],
+  //     memories: ["some text"],
+  //   },
+  //   {
+  //     _id: "4567",
+  //     name: "heaven",
+  //     relationship: ["enemy"],
+  //     memories: ["some text"],
+  //   },
+  // ];
 
   return (
     //TODO: put name of user above person widgets
     <>
       <main className="main">
         <div className="grouping-left">
-          <h1>Name of user</h1>
+          <h1>Name of user: {user?.user.username}</h1>
           <br />
           <button
-          className="button-to-text"
-          onClick={() => {
-            console.log("button has been clicked");
-            navigate('/add-person')}}>Add person</button>
+            className="button-to-text"
+            onClick={() => {
+              console.log("button has been clicked");
+              navigate(`/add-person/${user?.user._id}`);
+            }}
+          >
+            Add person
+          </button>
         </div>
         <section className="widgets">
-          <PersonWidget />
+          {user?.user.circle.map((elm) => {
+            console.log('this is elm')
+            console.log(user?.user.circle);
+            return <PersonWidget _id={elm._id} name={elm.name} />;
+          })}
         </section>
       </main>
-      {/* <p>this is the user: {user}</p> */}
     </>
   );
 }
