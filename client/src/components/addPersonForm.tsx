@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useParams } from "react-router-dom";
 
 export default function AddPersonForm() {
 
@@ -6,15 +7,20 @@ export default function AddPersonForm() {
     //const [relationship, setRelationship] = React.useState("");
     const userInput: {name: string} = {name: name};
 
-    async function addPerson(input:any) {
+    let { id } = useParams();
 
-        const fetcher = await fetch("http://localhost:3000/api/add-person", {
-          headers: {
-            "Content-type": "application/json",
-          },
-          method: "POST",
-          body: JSON.stringify(input)
-        });
+    async function addPerson(id:any, input:any) {
+
+        const fetcher = await fetch(
+          `http://localhost:3000/api/add-person/${id}`,
+          {
+            headers: {
+              "Content-type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(input),
+          }
+        );
 
         const newPerson = await fetcher.json();
         return newPerson;
@@ -25,7 +31,7 @@ export default function AddPersonForm() {
             <form
             onSubmit={async (e) => {
                 e.preventDefault();
-                const newPerson = await addPerson(userInput);
+                const newPerson = await addPerson(id, userInput);
                 console.log("this is the new person in DB after call to API")
                 console.log(newPerson)
             }}>
