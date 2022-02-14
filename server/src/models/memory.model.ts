@@ -1,12 +1,12 @@
 import { Schema, model } from "mongoose";
-//import { UserType } from "./user.model";
-//import { PersonType } from "./person.model";
+import { UserType } from "./user.model";
+import { PersonType } from "./person.model";
 
 export interface MemoryType {
-  title: string,
-  text: string,
-  author: any[], //TODO
-  person: any[] //TODO
+  title: string;
+  text: string;
+  author: UserType[];
+  person: PersonType[];
 }
 
 const memorySchema = new Schema<MemoryType>(

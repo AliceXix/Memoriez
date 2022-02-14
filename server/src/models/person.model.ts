@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
 import { RelationshipType } from "./relationship.model";
-//import { MemoryType } from "./memory.model";
+import { MemoryType } from "./memory.model";
 
 export interface PersonType {
   name: string;
-  relationship: RelationshipType;
-  memories: any[];
+  relationship: RelationshipType[];
+  memories: MemoryType[];
 }
 
 const personSchema = new Schema<PersonType>(

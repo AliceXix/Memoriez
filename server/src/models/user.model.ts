@@ -1,10 +1,11 @@
 import { Schema, model } from "mongoose";
+import { PersonType } from "./person.model";
 
 export interface UserType {
-    username: string,
-    mail: string,
-    password: string,
-    circle: any[]
+  username: string;
+  mail: string;
+  password: string;
+  circle: PersonType[];
 }
 
 const userSchema = new Schema<UserType>(
@@ -26,5 +27,4 @@ const userSchema = new Schema<UserType>(
 
 const User= model<UserType>("User", userSchema);
 
-//module.exports = User;
 export default User
