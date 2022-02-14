@@ -15,7 +15,7 @@ export default function App() {
       <Route path="/" element={<RegisterForm />} />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/dashboard/:id" element={<Dashboard />} />
-      <Route path="/person/:id" element={<PersonDetails />} />
+      <Route path="/person-details/:id" element={<PersonDetails />} />
       <Route path="/add-memory/:id" element={<AddMemoryForm />} />
       <Route path="/add-person/:id" element={<AddPersonForm/>}/>
       <Route path="/memory-details/:id" element={<MemoryDetails/>}/>
