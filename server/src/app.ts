@@ -79,9 +79,9 @@ const getUserInfoFromDB = app.get("/api/dashboard/:id", async (req, res, next) =
     res.send({ message: "something went wrong big time" });
   }
 
-  async function getUserById(userModel: typeof User, id: any) {
+  async function getUserById(model: typeof User, id: any) {
     let user: any = await
-    userModel.findById(id)
+    model.findById(id)
                     .populate('circle')
     return user;
   }
@@ -91,28 +91,8 @@ const getUserInfoFromDB = app.get("/api/dashboard/:id", async (req, res, next) =
     if (!user) {
       res.send({ message: "this user does not exist" });
     }
-
-  //no you do not need a "getPerson" because Person is part of the property circle of User
-
-  //------------------//
-
-  // async function getMemories(memoryModel: typeof Memory, id: any) {
-  //   let memories = memoryModel.find({ author: `${id}` });
-  //   return memories;
-  // }
-
-  // let memory: any = await getMemories(Memory, id.id);
-
-  // console.log("this comes from api dashboard and are the memories");
-  // console.log(memory);
-
-  //   if (!memory) {
-  //     res.send({ message: "this user does not have any memories yet" });
-  //   } 
-
-
-
-      res.send({ user: user });
+  
+    res.send({ user: user });
     
 });
 
@@ -123,16 +103,20 @@ const getPersonDetails = app.get("/api/person-details/:id", async (req, res, nex
       res.send({ message: "something went wrong big time" });
     }
 
-  async function getPersonById(model, id) {
-    let person = await 
+  async function getPersonById(model: typeof Person, id: any) {
+    let person: any = await 
     model.findById(id)
-              .lean()
+              .populate('memories')
     return person;
   }
 
-  let personDetails = await getPersonById(Person, id.id);
+  let person: any = await getPersonById(Person, id.id);
 
-  res.send(personDetails)
+      if (!person) {
+        res.send({ message: "this user does not exist" });
+      }
+
+  res.send({person: person});
 });
 
 const addMemory = app.post("/api/add-memory/:id", async (req, res, next) => {

@@ -1,0 +1,1 @@
+{"version":3,"file":"relationship.model.js","sourceRoot":"","sources":["../../src/models/relationship.model.ts"],"names":[],"mappings":";;AAAA,uCAAyC;AAMzC,MAAM,kBAAkB,GAAG,IAAI,iBAAM,CAAmB;IACtD,IAAI,EAAE;QACJ,IAAI,EAAE,MAAM;KACb;CACF,CAAC,CAAC;AAEH,MAAM,YAAY,GAAG,IAAA,gBAAK,EAAmB,cAAc,EAAE,kBAAkB,CAAC,CAAC;AAGjF,kBAAe,YAAY,CAAC"}

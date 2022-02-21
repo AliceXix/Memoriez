@@ -1,5 +1,7 @@
-const { Schema, model } = require("mongoose");
-const userSchema = new Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const userSchema = new mongoose_1.Schema({
     username: {
         type: String
     },
@@ -8,12 +10,12 @@ const userSchema = new Schema({
     },
     password: {
         type: String
-    }
-}, {
+    },
     circle: {
-        type: [{ type: Schema.Types.ObjectId, ref: 'Relationship' }]
+        type: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Person' }]
     }
 });
-const User = model("User", userSchema);
-module.exports = User;
+const User = (0, mongoose_1.model)("User", userSchema);
+//module.exports = User;
+exports.default = User;
 //# sourceMappingURL=user.model.js.map
