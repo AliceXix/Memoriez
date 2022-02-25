@@ -116,7 +116,7 @@ const getPersonDetails = app.get("/api/person-details/:id", async (req, res, nex
         res.send({ message: "this user does not exist" });
       }
 
-  res.send({person: person});
+  res.send(person);
 });
 
 const addMemory = app.post("/api/add-memory/:id", async (req, res, next) => {
