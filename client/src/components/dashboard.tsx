@@ -4,6 +4,7 @@ import * as React from "react";
 import PersonWidget from "./person.widget";
 import { personData } from "./person.details";
 
+
 export interface userData {
   memory: string[];
   user: {
@@ -102,7 +103,7 @@ export default function Dashboard() {
           {user?.user.circle.map((elm) => {
             console.log('this is elm')
             console.log(user?.user.circle);
-            return <PersonWidget key={elm._id} _id={elm._id} name={elm.name} />;
+            return <PersonWidget key={elm._id} _id={elm._id} name={elm.name}/>;
           })}
 
           {/* <PersonWidget  _id={personID} name={personName}/>; */}
