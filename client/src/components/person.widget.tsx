@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
 interface PersonWidgetProps {
-  _id: string,
-  name: string,
+  _id: string;
+  name: string;
 }
 
 export default function PersonWidget({_id, name}: PersonWidgetProps) {
