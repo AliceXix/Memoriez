@@ -2,9 +2,20 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import MemoryWidget from "./memory.widget";
 import { useParams } from "react-router-dom";
+import { createBrowserHistory} from "history";
+
+
+const history = createBrowserHistory();
+history.push("/login")
 
 export interface personData {
-  memories: string[];
+  memories: {
+    author: string[],
+    person: string[],
+    text: string,
+    title: string,
+    _id: string
+  }[];
   name: string;
   relationship: string[];
   _id: string;
@@ -33,33 +44,45 @@ export default function PersonDetails() {
       getPersonDetails(id);
     }, [id]);
 
-    console.log(person) //returns object with properties
-    console.log(person?.name); //returns undefined
-
 
     //NEED:
-    //details person aka name
     //memories to the person
+
+    console.log(person?.memories)
+
+      // const memoryID = person?.name.map((elm) => {
+      //   return elm;
+      // });
+
+      // console.log(memoryID)
 
 return (
   <>
     <main className="main">
       <button
-      className="button"
-      onClick={() => {
-        navigate(`/add-memory/${person?._id}`)}
-        }>Add memory!</button>
+        className="button"
+        onClick={() => {
+          navigate(`/add-memory/${person?._id}`);
+        }}
+      >
+        Add memory!
+      </button>
       <section className="box">
         <h2>Person name: {person?.name}</h2>
         <h5>relationship to person</h5>
       </section>
       <section className="widgets">
         <aside className="widget">
-          <MemoryWidget/>
+          {person?.memories.map((elm) => {
+            console.log(elm);
+            return <MemoryWidget key={elm._id} title={elm.title} _id={elm._id}/>
+            //TODO search DB by id for memory (id in array of person.memories)
+          })}
         </aside>
       </section>
     </main>
-    <button className='button-back'>Back</button>
+    <button
+      className="button-back">Back</button>
   </>
 );
 }
