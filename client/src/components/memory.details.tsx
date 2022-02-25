@@ -33,14 +33,14 @@ export default function MemoryDetails() {
     }, [id]);
 
     console.log(memory);
-    console.log(memory?.hasOwnProperty('title'));
 
 
     return (
       <>
         <main className="main">
           <section className="box">
-            <h2>Memory title: </h2>
+            <h2>Memory title: {memory?.title}</h2>
+            <p>{memory?.text}</p>
           </section>
         </main>
         <button
