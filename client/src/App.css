@@ -110,3 +110,18 @@ input {
   flex-direction: column;
   margin: 2em 0 2em 0;
 }
+
+.row-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5vh 3vh 0 3vh;
+}
+
+.column-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 2vh 0 2vh 1vh;
+}
