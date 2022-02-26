@@ -44,7 +44,7 @@ export default function MemoryDetails() {
         </main>
         <button
             className="button-back"
-            onClick={() => { navigate('') }}>Back</button>
+            onClick={() => { navigate(-1) }}>Back</button>
       </>
     );
 }
