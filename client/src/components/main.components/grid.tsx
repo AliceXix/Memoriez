@@ -3,6 +3,7 @@ import Header from './header';
 import BreadcrumbNav from './breadcrumb';
 import SideNav from './side.nav';
 import MemoryCreateCard from './memory.create.card';
+import AddMemoryForm from "../AddMemoryForm";
 
 export default function GridLayout() {
   return (
@@ -23,7 +24,7 @@ export default function GridLayout() {
             <BreadcrumbNav/>
         </GridItem>
         <GridItem rowStart={5} colStart={5} colEnd={15} colSpan={4} rowSpan={3} bg="blue">
-            <MemoryCreateCard/>
+            <AddMemoryForm/>
         </GridItem>
       </Grid>
     </>
