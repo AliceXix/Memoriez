@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 
+import { Input, Button } from "@chakra-ui/react";
+
 export default function AddMemoryForm() {
   const [title, setTitle] = React.useState("");
   const [text, setText] = React.useState("");
@@ -31,19 +33,23 @@ export default function AddMemoryForm() {
           await addMemory(id, userInput);
         }}
       >
-        <label htmlFor="title">Title</label>
-        <input
+        <label htmlFor="title"></label>
+        <Input
           id="title"
           type={"text"}
+          placeholder="title"
           onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        <label htmlFor="text">Text</label>
-        <input
+        ></Input>
+        <label htmlFor="text"></label>
+        <Input
           id="text"
           type={"text"}
+          placeholder="memory"
           onChange={(e) => setText(e.target.value)}
-        ></input>
-        <input type={"submit"} value={"Add memory!"}></input>
+        ></Input>
+        <Button>
+          <input type={"submit"} value={"Create"}></input>
+        </Button>
       </form>
     </>
   );
