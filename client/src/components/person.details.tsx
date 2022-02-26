@@ -2,11 +2,8 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import MemoryWidget from "./memory.widget";
 import { useParams } from "react-router-dom";
-import { createBrowserHistory} from "history";
+import useBreadcrums from 'use-react-router-breadcrumbs';
 
-
-const history = createBrowserHistory();
-history.push("/login")
 
 export interface personData {
   memories: {
@@ -44,8 +41,22 @@ export default function PersonDetails() {
       getPersonDetails(id);
     }, [id]);
 
+
+      const breadcrumbs = useBreadcrums();
+
+
 return (
   <>
+    <React.Fragment>
+      {breadcrumbs.map(({ breadcrumb }) => (
+        <button
+        className="button"
+        onClick={ () => {
+          navigate(`/${JSON.stringify(breadcrumb)}`)
+        }}
+        >{breadcrumb}</button>
+      ))}
+    </React.Fragment>
     <main className="main">
       <button
         className="button"
@@ -62,13 +73,16 @@ return (
       <section className="widgets">
         <aside className="widget">
           {person?.memories.map((elm) => {
-            return <MemoryWidget key={elm._id} title={elm.title} _id={elm._id}/>
+            return (
+              <MemoryWidget key={elm._id} title={elm.title} _id={elm._id} />
+            );
           })}
         </aside>
       </section>
     </main>
-    <button
-      className="button-back">Back</button>
+    <button className="button-back" onClick={() => navigate(-1)}>
+      Back
+    </button>
   </>
 );
 }

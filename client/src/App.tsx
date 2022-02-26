@@ -7,6 +7,7 @@ import PersonDetails from './components/person.details';
 import AddMemoryForm from './components/AddMemoryForm';
 import AddPersonForm from './components/addPersonForm';
 import MemoryDetails from './components/memory.details';
+import GridLayout from './components/main.components/grid';
 
 export default function App() {
 
@@ -17,8 +18,9 @@ export default function App() {
       <Route path="/dashboard/:id" element={<Dashboard />} />
       <Route path="/person-details/:id" element={<PersonDetails />} />
       <Route path="/add-memory/:id" element={<AddMemoryForm />} />
-      <Route path="/add-person/:id" element={<AddPersonForm/>}/>
-      <Route path="/memory-details/:id" element={<MemoryDetails/>}/>
+      <Route path="/add-person/:id" element={<AddPersonForm />} />
+      <Route path="/memory-details/:id" element={<MemoryDetails />} />
+      <Route path="/grid" element={<GridLayout />} />
     </Routes>
   );
 }

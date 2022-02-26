@@ -25,7 +25,7 @@ export default function RegisterForm() {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
-              const newUser = await handleRegister(userInfo);
+             await handleRegister(userInfo);
             }}
           >
             <label htmlFor="username">Username:</label>

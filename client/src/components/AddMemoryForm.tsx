@@ -20,8 +20,7 @@ export default function AddMemoryForm() {
       body: JSON.stringify(input),
     });
 
-    const newMemory = await fetcher.json();
-    return newMemory;
+    return await fetcher.json();
   }
 
   return (
@@ -29,7 +28,7 @@ export default function AddMemoryForm() {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          const newMemory = await addMemory(id, userInput);
+          await addMemory(id, userInput);
         }}
       >
         <label htmlFor="title">Title</label>

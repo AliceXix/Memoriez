@@ -38,19 +38,6 @@ export default function Dashboard() {
   }, [id]);
 
 
-  const personID = user?.user.circle.map((elm) => {
-    return elm._id
-  })
-
-  const personName = user?.user.circle.map((elm) => {
-    return elm.name;
-  });
-
-  const personMemories = user?.user.circle.map((elm) => {
-    return elm.memories;
-  });
-
-
   return (
     <>
       <main className="main">
@@ -70,8 +57,6 @@ export default function Dashboard() {
           {user?.user.circle.map((elm) => {
             return <PersonWidget key={elm._id} _id={elm._id} name={elm.name}/>;
           })}
-
-          {/* <PersonWidget  _id={personID} name={personName}/>; */}
         </section>
       </main>
     </>

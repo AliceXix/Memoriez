@@ -30,18 +30,13 @@ export default function AddPersonForm() {
             <form
             onSubmit={async (e) => {
                 e.preventDefault();
-                const newPerson = await addPerson(id, userInput);
+                await addPerson(id, userInput);
             }}>
                 <label htmlFor="name">Name:</label>
                 <input
                 id="name"
                 type={"text"}
                 onChange={(e) => setName(e.target.value)}></input>
-                {/* <label htmlFor="relationship">Relationship:</label>
-                <input
-                id="reltionship"
-                type={"text"}
-                onChange={(e) => setRelationship(e.target.value)}></input> */}
                 <input type={"submit"} value={"Add new person!"}></input>
             </form>
         </>

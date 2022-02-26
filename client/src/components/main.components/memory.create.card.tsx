@@ -13,7 +13,6 @@ import {
   MenuList,
   MenuItem,
 } from "@chakra-ui/react";
-import { unset } from 'lodash';
 
 
 export default function MemoryCreateCard() {

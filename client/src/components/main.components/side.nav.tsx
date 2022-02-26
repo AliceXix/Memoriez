@@ -1,4 +1,4 @@
-import { Link, Box } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
 import {
   Accordion,
   AccordionItem,
