@@ -10,7 +10,6 @@ export default function AddMemoryForm() {
   };
 
   let { id } = useParams();
-  console.log(id)
 
   async function addMemory(id: any, input: any) {
     const fetcher = await fetch(`http://localhost:3000/api/add-memory/${id}`, {
@@ -30,10 +29,7 @@ export default function AddMemoryForm() {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          console.log("we have submitted form and are ready for API call");
           const newMemory = await addMemory(id, userInput);
-          console.log("here comes the output off calling API");
-          console.log(newMemory);
         }}
       >
         <label htmlFor="title">Title</label>

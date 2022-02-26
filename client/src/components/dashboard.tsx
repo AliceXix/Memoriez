@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-//import { getProfileInfos } from "../handlers/getProfileInfos";
 import * as React from "react";
 import PersonWidget from "./person.widget";
 import { personData } from "./person.details";
@@ -38,34 +37,6 @@ export default function Dashboard() {
     getProfileInfos(id);
   }, [id]);
 
-  console.log(JSON.stringify(user?.user._id))
-
-  // const arr = [
-  //   {
-  //     _id: "1234",
-  //     name: "bob",
-  //     relationship: ["friend"],
-  //     memories: ["some text"],
-  //   },
-  //   {
-  //     _id: "5678",
-  //     name: "tim",
-  //     relationship: ["mom"],
-  //     memories: ["some text"],
-  //   },
-  //   {
-  //     _id: "8912",
-  //     name: "junka",
-  //     relationship: ["girlfriend"],
-  //     memories: ["some text"],
-  //   },
-  //   {
-  //     _id: "4567",
-  //     name: "heaven",
-  //     relationship: ["enemy"],
-  //     memories: ["some text"],
-  //   },
-  // ];
 
   const personID = user?.user.circle.map((elm) => {
     return elm._id
@@ -79,11 +50,8 @@ export default function Dashboard() {
     return elm.memories;
   });
 
-  console.log('---------')
-  console.log(personMemories);
 
   return (
-    //TODO: put name of user above person widgets
     <>
       <main className="main">
         <div className="grouping-left">
@@ -92,7 +60,6 @@ export default function Dashboard() {
           <button
             className="button-to-text"
             onClick={() => {
-              console.log("button has been clicked");
               navigate(`/add-person/${user?.user._id}`);
             }}
           >
@@ -101,8 +68,6 @@ export default function Dashboard() {
         </div>
         <section className="widgets">
           {user?.user.circle.map((elm) => {
-            console.log('this is elm')
-            console.log(user?.user.circle);
             return <PersonWidget key={elm._id} _id={elm._id} name={elm.name}/>;
           })}
 

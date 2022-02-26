@@ -44,18 +44,6 @@ export default function PersonDetails() {
       getPersonDetails(id);
     }, [id]);
 
-
-    //NEED:
-    //memories to the person
-
-    console.log(person?.memories)
-
-      // const memoryID = person?.name.map((elm) => {
-      //   return elm;
-      // });
-
-      // console.log(memoryID)
-
 return (
   <>
     <main className="main">
@@ -74,9 +62,7 @@ return (
       <section className="widgets">
         <aside className="widget">
           {person?.memories.map((elm) => {
-            console.log(elm);
             return <MemoryWidget key={elm._id} title={elm.title} _id={elm._id}/>
-            //TODO search DB by id for memory (id in array of person.memories)
           })}
         </aside>
       </section>

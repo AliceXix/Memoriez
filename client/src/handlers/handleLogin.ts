@@ -9,18 +9,10 @@ export async function handleLogin (userInfo:any) {
     })
         .then(response => {
                 if (response.status !== 200) {
-                    console.log("looks like something went wrong here")
                     return
                 } else {
-                    console.log("you are now logged in")
                 }
                 return response.json();
-            })
-            .then(data => {
-                    console.log(data)
-                    //setState user
-                    //useEffect look it up
-                    //TODO: res.send "registered"
             })
             .catch(err => {
                 console.log(err)

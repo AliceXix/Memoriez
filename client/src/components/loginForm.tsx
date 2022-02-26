@@ -35,7 +35,6 @@ export default function LoginForm() {
             onSubmit={async (e) => {
               e.preventDefault();
               let newUrl = await handleLogin(userInfo);
-              console.log(`this comes from the return statement ${newUrl.id}`);
               navigate(`/dashboard/${newUrl.id}`);
             }}
           >

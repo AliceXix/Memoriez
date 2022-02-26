@@ -32,7 +32,6 @@ export default function MemoryDetails() {
         getMemory(id);
     }, [id]);
 
-    console.log(memory);
 
 
     return (

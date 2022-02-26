@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 export default function AddPersonForm() {
 
     const [name, setName] = React.useState("");
-    //const [relationship, setRelationship] = React.useState("");
     const userInput: {name: string} = {name: name};
 
     let { id } = useParams();
@@ -32,8 +31,6 @@ export default function AddPersonForm() {
             onSubmit={async (e) => {
                 e.preventDefault();
                 const newPerson = await addPerson(id, userInput);
-                console.log("this is the new person in DB after call to API")
-                console.log(newPerson)
             }}>
                 <label htmlFor="name">Name:</label>
                 <input

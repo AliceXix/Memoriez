@@ -6,8 +6,6 @@ import "./db";
 const app = express();
 const port = 3000;
 
-//import { doesUserExists } from './services/loginUser';
-//import { getUserFromDB } from "./services/getUserFromDB";
 import User from "./models/user.model";
 import Memory from "./models/memory.model";
 import Person from "./models/person.model";
@@ -30,7 +28,6 @@ app.listen(port, (err) => {
 });
 
 const register = app.post("/api/register", async (req, res, next) => {
-  // Read input from request
   const userInput = req.body;
 
   async function createUser(userModel: any, userInput: any) {
@@ -44,15 +41,11 @@ const register = app.post("/api/register", async (req, res, next) => {
 
   const newUser = await createUser(User, userInput)
 
-  // Return response from created user
   res.send({ user: `${newUser}` });
 });
 
 const login = app.post("/api/login", async (req, res, next) => {
-  //read input from request
   const { username, mail } = req.body;
-  console.log(`this is user ${username}, ${mail}`);
-  console.log(username);
 
   async function getUser(userModel: any, username: any) {
     let userId = userModel.findOne({ username });
@@ -61,13 +54,10 @@ const login = app.post("/api/login", async (req, res, next) => {
 
   let userID: any = await getUser(User, username);
 
-  console.log(`this is user id ${userID}`);
-  console.log(userID._id);
 
   if (!userID) {
     res.send({ message: "this user does not exist" });
   } else {
-    //res.send({message: 'this worked fine'})
     res.send({ id: `${userID._id}` });
   }
 });
