@@ -7,15 +7,42 @@ import {
 
 import { Formik, Form, Field} from 'formik'
 
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-} from "@chakra-ui/react";
+import * as React from "react";
+import { useParams } from "react-router-dom";
+
+// import {
+//   Menu,
+//   MenuButton,
+//   MenuList,
+//   MenuItem,
+// } from "@chakra-ui/react";
+//TODO implement adding related person with API connection
 
 
 export default function MemoryCreateCard() {
+    const [title, setTitle] = React.useState("");
+    const [text, setText] = React.useState("");
+    const userInput: { title: string; text: string } = {
+      title: title,
+      text: text,
+    };
+
+    let { id } = useParams();
+
+    async function addMemory(id: any, input: any) {
+      const fetcher = await fetch(
+        `http://localhost:3000/api/add-memory/${id}`,
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify(input),
+        }
+      );
+
+      return await fetcher.json();
+    }
 
   return (
     <>
@@ -29,9 +56,14 @@ export default function MemoryCreateCard() {
         }}
       >
         {(props) => (
-          <Form>
+          <Form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              await addMemory(id, userInput);
+            }}
+          >
             <section className="row-items">
-              <div>
+              {/* <div>
                 <Menu>
                   <MenuButton as={Button} rightIcon="v" margin={"unset"}>
                     person related to
@@ -41,16 +73,19 @@ export default function MemoryCreateCard() {
                     <MenuItem>name 2</MenuItem>
                   </MenuList>
                 </Menu>
-              </div>
+              </div> */}
+              {/* TODO implement adding related person with API connection */}
               <div>
-                <Field
-                  name="name"
-                  width={"100%"}
-                >
+                <Field name="name" width={"100%"}>
                   {({ field }: { field: any }) => (
                     <FormControl>
-                      <FormLabel htmlFor="memory" margin={"unset"}></FormLabel>
-                      <Input {...field} id="memory" placeholder="memory"/>
+                      <FormLabel
+                        htmlFor="title"
+                        margin={"unset"}
+                      ></FormLabel>
+                      <Input {...field} id="title" placeholder="title" />
+                      <FormLabel htmlFor="text" margin={"unset"}></FormLabel>
+                      <Input {...field} id="text" placeholder="memory" />
                     </FormControl>
                   )}
                 </Field>
