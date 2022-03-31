@@ -8,19 +8,39 @@ import AddMemoryForm from './components/AddMemoryForm';
 import AddPersonForm from './components/addPersonForm';
 import MemoryDetails from './components/memory.details';
 import GridLayout from './components/main.components/grid';
+import AppComponent from './AppComponent';
 
 export default function App() {
 
   return (
-    <Routes>
-      <Route path="/" element={<RegisterForm />} />
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/dashboard/:id" element={<Dashboard />} />
-      <Route path="/person-details/:id" element={<PersonDetails />} />
-      <Route path="/add-memory/:id" element={<AddMemoryForm />} />
-      <Route path="/add-person/:id" element={<AddPersonForm />} />
-      <Route path="/memory-details/:id" element={<MemoryDetails />} />
-      <Route path="/grid" element={<GridLayout />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
+
+        <Route path="/app/*" element={<GridLayout />} />
+
+        <Route path="/app/dashboard/:id" element={<GridLayout></GridLayout>} />
+
+        <Route
+          path="/app/person-details/:id"
+          element={
+            <GridLayout>
+              <PersonDetails />
+            </GridLayout>
+          }
+        />
+        <Route path="/app/add-memory/:id" element={<AddMemoryForm />} />
+        <Route path="/app/add-person/:id" element={<AddPersonForm />} />
+        <Route
+          path="/app/memory-details/:id"
+          element={
+            <GridLayout>
+              <MemoryDetails />
+            </GridLayout>
+          }
+        />
+      </Routes>
+    </>
   );
 }
