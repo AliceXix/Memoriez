@@ -26,6 +26,13 @@ export default function LoginForm() {
     return data;
   }
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    let newUrl = await handleLogin(userInfo);
+    localStorage.setItem("userId", newUrl.id);
+    navigate(`/app/dashboard/${newUrl.id}`);
+  }
+
   return (
     <>
       <main className="main">
@@ -33,9 +40,7 @@ export default function LoginForm() {
           <h2>Login here!</h2>
           <form
             onSubmit={async (e) => {
-              e.preventDefault();
-              let newUrl = await handleLogin(userInfo);
-              navigate(`/dashboard/${newUrl.id}`);
+              handleSubmit(e)
             }}
           >
             <div className="input">
