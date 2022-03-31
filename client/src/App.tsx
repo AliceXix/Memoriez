@@ -31,7 +31,14 @@ export default function App() {
           }
         />
         <Route path="/app/add-memory/:id" element={<AddMemoryForm />} />
-        <Route path="/app/add-person/:id" element={<AddPersonForm />} />
+        <Route
+          path="/app/add-person/:id"
+          element={
+            <GridLayout>
+              <AddPersonForm />
+            </GridLayout>
+          }
+        />
         <Route
           path="/app/memory-details/:id"
           element={
