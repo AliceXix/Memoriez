@@ -1,7 +1,9 @@
 import * as React from "react"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function AddPersonForm() {
+
+  const navigate = useNavigate();
 
     const [name, setName] = React.useState("");
     const userInput: {name: string} = {name: name};
@@ -37,7 +39,12 @@ export default function AddPersonForm() {
                 id="name"
                 type={"text"}
                 onChange={(e) => setName(e.target.value)}></input>
-                <input type={"submit"} value={"Add new person!"}></input>
+                <input
+                type={"submit"}
+                value={"Add new person!"}
+                onClick={() => {
+                  navigate(-1)
+                }}></input>
             </form>
         </>
     )
