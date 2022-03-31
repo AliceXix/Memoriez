@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import MemoryWidget from "./memory.widget";
 import { useParams } from "react-router-dom";
 import useBreadcrums from 'use-react-router-breadcrumbs';
+import { Center, Grid, GridItem } from "@chakra-ui/react";
+import { Wrap, WrapItem } from "@chakra-ui/react";
 
 
 export interface personData {
@@ -18,7 +20,11 @@ export interface personData {
   _id: string;
 }
 
-export default function PersonDetails() {
+interface PersonDetailsProps {
+  children?: React.ReactNode;
+}
+
+export default function PersonDetails({ children }: PersonDetailsProps) {
 
     const [person, setPerson] = React.useState<null | personData>();
     const navigate = useNavigate();
@@ -47,42 +53,36 @@ export default function PersonDetails() {
 
 return (
   <>
-    <React.Fragment>
-      {breadcrumbs.map(({ breadcrumb }) => (
-        <button
-        className="button"
-        onClick={ () => {
-          navigate(`/${JSON.stringify(breadcrumb)}`)
-        }}
-        >{breadcrumb}</button>
-      ))}
-    </React.Fragment>
-    <main className="main">
-      <button
-        className="button"
-        onClick={() => {
-          navigate(`/add-memory/${person?._id}`);
-        }}
-      >
-        Add memory!
-      </button>
-      <section className="box">
-        <h2>Person name: {person?.name}</h2>
-        <h5>relationship to person</h5>
-      </section>
-      <section className="widgets">
-        <aside className="widget">
+    <Grid
+      h="100%"
+      gap={1.5}
+      gridTemplateRows={` 2fr 2fr 2fr .05fr`}
+      gridTemplateColumns={` 1fr 2fr 2fr`}
+      gridTemplateAreas={[
+        `". . ."`,
+        `"..."`,
+        `"personDetails details details"
+        "personDetails details details"
+        "personDetails details details"`,
+      ]}
+    >
+      <GridItem bg="tomato" gridArea={"personDetails"}>
+        {person?.name}
+        {person?.relationship}
+      </GridItem>
+
+      <GridItem gridArea={"details"} bg="blue">
+        <Wrap spacing="30px" bg="yellow" height={"100%"}>
           {person?.memories.map((elm) => {
             return (
-              <MemoryWidget key={elm._id} title={elm.title} _id={elm._id} />
+              <WrapItem height={"180px"} width={"30%"} bg="purple">
+                <MemoryWidget key={elm._id} title={elm.title} _id={elm._id}/>
+              </WrapItem>
             );
           })}
-        </aside>
-      </section>
-    </main>
-    <button className="button-back" onClick={() => navigate(-1)}>
-      Back
-    </button>
+        </Wrap>
+      </GridItem>
+    </Grid>
   </>
 );
 }
