@@ -1,12 +1,12 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import RegisterForm from "./components/registerFrom";
-import LoginForm from './components/loginForm';
+import RegisterForm from "./components/auth/registerFrom";
+import LoginForm from './components/auth/loginForm';
 import PersonDetails from './components/person.details';
 import AddMemoryForm from './components/AddMemoryForm';
 import AddPersonForm from './components/addPersonForm';
 import MemoryDetails from './components/memory.details';
-import GridLayout from './components/main.components/grid';
+import GridLayout from './components/main/grid';
 
 export default function App() {
 

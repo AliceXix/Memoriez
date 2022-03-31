@@ -1,7 +1,7 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import * as React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { userData } from "./dashboard";
+import { userData } from "./main/dashboard";
 import { personData } from "./person.details";
 
 export interface memoryData {

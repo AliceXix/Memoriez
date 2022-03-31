@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import * as React from "react";
-import PersonWidget from "./person.widget";
-import { personData } from "./person.details";
+import PersonWidget from "../person.widget";
+import { personData } from "../person.details";
 
 
 export interface userData {

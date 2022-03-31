@@ -2,7 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import Header from './header';
 import BreadcrumbNav from './breadcrumb';
 import SideNav from './side.nav';
-import AddMemoryForm from "../AddMemoryForm";
+import AddMemoryForm from '../AddMemoryForm';
 import { ReactNode } from "react";
 
 interface Props {
