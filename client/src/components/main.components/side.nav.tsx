@@ -28,7 +28,6 @@ export default function SideNav() {
 
   let { id } = useParams();
   let userId = localStorage.getItem("userId");
-  //let id = "62090860481ca44282afbe08";
 
   async function getProfileInfos(id: any) {
     const fetcher = await fetch(`http://localhost:3000/api/user/${id}`, {
@@ -44,6 +43,10 @@ export default function SideNav() {
       getProfileInfos(userId);
     }
   }, [userId]);
+
+  async function handleLogout() {
+    localStorage.clear();
+  }
 
   return (
     <>
@@ -92,7 +95,10 @@ export default function SideNav() {
           <Link>
             <h4>Help</h4>
           </Link>
-          <Link>
+          <Link onClick={() => {
+            handleLogout();
+            navigate("/login")
+          }}>
             <h4>Logout</h4>
           </Link>
         </div>
