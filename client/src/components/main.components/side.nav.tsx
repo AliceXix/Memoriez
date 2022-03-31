@@ -7,7 +7,7 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as React from "react";
 import { personData } from "../person.details";
 
@@ -26,11 +26,12 @@ export default function SideNav() {
   const [user, setUser] = React.useState<null | userData>();
   const navigate = useNavigate();
 
-  //let { id } = useParams();
-  let id = "62090860481ca44282afbe08";
+  let { id } = useParams();
+  let userId = localStorage.getItem("userId");
+  //let id = "62090860481ca44282afbe08";
 
   async function getProfileInfos(id: any) {
-    const fetcher = await fetch(`http://localhost:3000/api/dashboard/${id}`, {
+    const fetcher = await fetch(`http://localhost:3000/api/user/${id}`, {
       method: "GET",
     });
     const data: userData = await fetcher.json();
@@ -39,14 +40,16 @@ export default function SideNav() {
   }
 
   React.useEffect(() => {
-    getProfileInfos(id);
-  }, [id]);
+    if (userId) {
+      getProfileInfos(userId);
+    }
+  }, [userId]);
 
   return (
     <>
       <nav className="column-items">
         <div>
-          <Link href="/">
+          <Link href="/app">
             <h4>Dashboard</h4>
           </Link>
           <Link>
@@ -68,7 +71,7 @@ export default function SideNav() {
                     <Link>
                       <button
                         onClick={() => {
-                          navigate(`/person-details/${elm._id}`);
+                          navigate(`/app/person-details/${elm._id}`);
                         }}
                       >
                         <h4>{elm.name}</h4>
@@ -79,6 +82,11 @@ export default function SideNav() {
               })}
             </AccordionItem>
           </Accordion>
+          <Link onClick={() => {
+            navigate(`/app/add-person/${userId}`);
+          }}>
+            <h4>Add to my circle</h4>
+          </Link>
         </div>
         <div>
           <Link>
