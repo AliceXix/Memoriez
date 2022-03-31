@@ -15,7 +15,7 @@ export default function PersonWidget({_id, name}: PersonWidgetProps) {
           <h3>Name of the person: {name}</h3>
           <button
           className="button-to-text"
-          onClick={() => {navigate(`/person-details/${_id}`)}}>View card</button>
+          onClick={() => {navigate(`/app/person-details/${_id}`)}}>View card</button>
         </section>
       </>
     );

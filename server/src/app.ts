@@ -62,7 +62,7 @@ const login = app.post("/api/login", async (req, res, next) => {
   }
 });
 
-const getUserInfoFromDB = app.get("/api/dashboard/:id", async (req, res, next) => {
+const getUserInfoFromDB = app.get("/api/user/:id", async (req, res, next) => {
   const id = req.params;
 
   if (!id) {
@@ -135,7 +135,7 @@ const addMemory = app.post("/api/add-memory/:id", async (req, res, next) => {
     return updatedPerson;
   }
 
-  const updatedPerson = await findPersonAndUpdateMemories(Person, id.id);
+  const updatedPerson = await findPersonAndUpdateMemories(Person, userInput.person);
 
   res.send({ update: updatedPerson });
 });

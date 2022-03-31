@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
 interface MemoriesWidgetProps {
-  _id: string,
-  title: string
+  _id: string;
+  title: string;
 }
 
 export default function MemoryWidget({_id, title}: MemoriesWidgetProps) {
@@ -10,17 +10,18 @@ export default function MemoryWidget({_id, title}: MemoriesWidgetProps) {
 
   return (
     <>
-      <section className="widget main">
-        <h3>Name of the memory {title}</h3>
+      <section>
+        <h3>{title}</h3>
+
+        <button
+          // className="button-to-text"
+          onClick={() => {
+            navigate(`/app/memory-details/${_id}`);
+          }}
+        >
+          View card
+        </button>
       </section>
-      <button
-        className="button-to-text"
-        onClick={() => {
-          navigate(`/memory-details/${_id}`);
-        }}
-      >
-        View card
-      </button>
     </>
   );
 }

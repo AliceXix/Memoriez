@@ -9,10 +9,7 @@ import {
 export default function BreadcrumbNav() {
   return (
     <>
-      <Breadcrumb
-        spacing="8px"
-        separator=">"
-      >
+      <Breadcrumb spacing="8px" separator=">" bg="papayawhip">
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>

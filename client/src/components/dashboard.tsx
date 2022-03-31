@@ -23,7 +23,7 @@ export default function Dashboard() {
 
   async function getProfileInfos(id: any) {
     const fetcher = await fetch(
-      `http://localhost:3000/api/dashboard/${id}`,
+      `http://localhost:3000/api/user/${id}`,
       {
         method: "GET",
       }
@@ -47,7 +47,7 @@ export default function Dashboard() {
           <button
             className="button-to-text"
             onClick={() => {
-              navigate(`/add-person/${user?.user._id}`);
+              navigate(`/app/add-person/${user?.user._id}`);
             }}
           >
             Add person
