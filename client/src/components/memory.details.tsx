@@ -1,3 +1,4 @@
+import { Grid, GridItem } from "@chakra-ui/react";
 import * as React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { userData } from "./dashboard";
@@ -10,7 +11,11 @@ export interface memoryData {
   person: personData[];
 }
 
-export default function MemoryDetails() {
+interface MemoryDetailsProps {
+  children?: React.ReactNode;
+}
+
+export default function MemoryDetails({children}: MemoryDetailsProps) {
     const [memory, setMemory] = React.useState<null | memoryData>();
     const navigate = useNavigate();
 
@@ -36,15 +41,46 @@ export default function MemoryDetails() {
 
     return (
       <>
-        <main className="main">
-          <section className="box">
+        <Grid
+          h="100%"
+          gap={1.5}
+          gridTemplateRows={` .2fr 1fr .05fr`}
+          gridTemplateColumns={`1fr`}
+          gridTemplateAreas={[
+            `"."`,
+            `"."`,
+            `"title"
+          "text"
+          "button"`,
+          ]}
+        >
+          <GridItem gridArea={"title"} bg="purple">
             <h2>Memory title: {memory?.title}</h2>
+          </GridItem>
+
+          <GridItem gridArea={"text"} bg="orange">
             <p>{memory?.text}</p>
-          </section>
-        </main>
-        <button
-            className="button-back"
-            onClick={() => { navigate(-1) }}>Back</button>
+          </GridItem>
+
+          <GridItem gridArea={"button"}>
+            <button
+              className="button-back"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Back
+            </button>
+          </GridItem>
+        </Grid>
+        {/* <button
+          className="button-back"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Back
+        </button> */}
       </>
     );
 }
