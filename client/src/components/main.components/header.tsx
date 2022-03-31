@@ -1,8 +1,5 @@
 import { Input } from "@chakra-ui/react";
-
-import { useParams } from "react-router-dom";
 import * as React from "react";
-//import PersonWidget from "../person.widget";
 import { personData } from "../person.details";
 
 
@@ -19,11 +16,8 @@ export interface userData {
 
 export default function Header() {
   const [user, setUser] = React.useState<null | userData>();
-  //const navigate = useNavigate();
 
-  let { id } = useParams();
   let userId = localStorage.getItem("userId");
-  //let id = "62090860481ca44282afbe08";
 
   async function getProfileInfos(id: any) {
     const fetcher = await fetch(`http://localhost:3000/api/user/${id}`, {

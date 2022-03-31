@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MemoryWidget from "./memory.widget";
 import { useParams } from "react-router-dom";
 import useBreadcrums from 'use-react-router-breadcrumbs';
-import { Center, Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import { Wrap, WrapItem } from "@chakra-ui/react";
 
 

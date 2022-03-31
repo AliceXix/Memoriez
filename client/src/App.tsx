@@ -2,13 +2,11 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import RegisterForm from "./components/registerFrom";
 import LoginForm from './components/loginForm';
-import Dashboard from './components/dashboard';
 import PersonDetails from './components/person.details';
 import AddMemoryForm from './components/AddMemoryForm';
 import AddPersonForm from './components/addPersonForm';
 import MemoryDetails from './components/memory.details';
 import GridLayout from './components/main.components/grid';
-import AppComponent from './AppComponent';
 
 export default function App() {
 
@@ -18,9 +16,7 @@ export default function App() {
         <Route path="/" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
 
-        <Route path="/app/*" element={<GridLayout />} />
-
-        <Route path="/app/dashboard/:id" element={<GridLayout></GridLayout>} />
+        <Route path="/app/dashboard/:id" element={<GridLayout />} />
 
         <Route
           path="/app/person-details/:id"

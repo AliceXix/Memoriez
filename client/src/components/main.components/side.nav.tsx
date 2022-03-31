@@ -7,7 +7,7 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import * as React from "react";
 import { personData } from "../person.details";
 
@@ -26,7 +26,6 @@ export default function SideNav() {
   const [user, setUser] = React.useState<null | userData>();
   const navigate = useNavigate();
 
-  let { id } = useParams();
   let userId = localStorage.getItem("userId");
 
   async function getProfileInfos(id: any) {

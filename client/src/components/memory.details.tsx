@@ -73,14 +73,6 @@ export default function MemoryDetails({children}: MemoryDetailsProps) {
             </button>
           </GridItem>
         </Grid>
-        {/* <button
-          className="button-back"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          Back
-        </button> */}
       </>
     );
 }

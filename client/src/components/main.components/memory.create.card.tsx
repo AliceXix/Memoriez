@@ -10,14 +10,6 @@ import { Formik, Form, Field} from 'formik'
 import * as React from "react";
 import { useParams } from "react-router-dom";
 
-// import {
-//   Menu,
-//   MenuButton,
-//   MenuList,
-//   MenuItem,
-// } from "@chakra-ui/react";
-//TODO implement adding related person with API connection
-
 
 export default function MemoryCreateCard() {
     const [title, setTitle] = React.useState("");
@@ -63,18 +55,6 @@ export default function MemoryCreateCard() {
             }}
           >
             <section className="row-items">
-              {/* <div>
-                <Menu>
-                  <MenuButton as={Button} rightIcon="v" margin={"unset"}>
-                    person related to
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>name 1</MenuItem>
-                    <MenuItem>name 2</MenuItem>
-                  </MenuList>
-                </Menu>
-              </div> */}
-              {/* TODO implement adding related person with API connection */}
               <div>
                 <Field name="name" width={"100%"}>
                   {({ field }: { field: any }) => (
