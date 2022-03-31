@@ -4,27 +4,51 @@ import BreadcrumbNav from './breadcrumb';
 import SideNav from './side.nav';
 import MemoryCreateCard from './memory.create.card';
 import AddMemoryForm from "../AddMemoryForm";
+import { ReactNode } from "react";
 
-export default function GridLayout() {
+interface Props {
+  children?: ReactNode
+}
+
+export default function GridLayout({children}: Props) {
+  //export default function GridLayout() {
   return (
     <>
       <Grid
         h="100vh"
-        templateRows="repeat(22, 1fr)"
-        templateColumns="repeat(16, 1fr)"
-        gap={0} 
+        gap={"5px"}
+        gridTemplateRows={` 1fr .5fr 1fr 1fr 1fr 1fr 1fr 1fr .2fr`}
+        gridTemplateColumns={` 1fr .5fr 7fr .2fr`}
+        gridTemplateAreas={[
+          `"header" "breadCrumb" "form" "sideNav"`,
+          `"header" "breadCrumb" "form" "sideNav"`,
+          `"header header header header"
+            "breadCrumb breadCrumb . ."
+            "sideNav . form ."
+          "sideNav . details ."
+          "sideNav . details ."
+          "sideNav . details ."
+          "sideNav . details ."
+          "sideNav . details ."
+          "sideNav . details ."`,
+        ]}
       >
-          <GridItem rowStart={4} colSpan={2} rowSpan={19} bg="gray">
-            <SideNav/>
-          </GridItem>
-        <GridItem rowStart={1} rowSpan={2} colSpan={16} bg="tomato">
-            <Header/>
+        <GridItem gridArea="sideNav" bg="gray">
+          <SideNav />
         </GridItem>
-        <GridItem rowStart={3} colSpan={3} rowSpan={1} bg="papayawhip">
-            <BreadcrumbNav/>
+        <GridItem gridArea="header" bg="tomato">
+          <Header />
         </GridItem>
-        <GridItem rowStart={5} colStart={5} colEnd={15} colSpan={4} rowSpan={3} bg="blue">
-            <AddMemoryForm/>
+        <GridItem gridArea="breadCrumb">
+          <div>
+            <BreadcrumbNav />
+          </div>
+        </GridItem>
+        <GridItem gridArea="form" bg="blue">
+          <AddMemoryForm />
+        </GridItem>
+        <GridItem gridArea="details">
+          {children}
         </GridItem>
       </Grid>
     </>
