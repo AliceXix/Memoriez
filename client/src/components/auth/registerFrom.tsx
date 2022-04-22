@@ -19,32 +19,56 @@ export default function RegisterForm() {
 
   return (
     <>
-      <div className="App">
-        <header className="App-header">
-          <p>Register here!</p>
-          <form
-            onSubmit={async (e) => {
-              e.preventDefault();
-             await handleRegister(userInfo);
-            }}
-          >
-            <label htmlFor="username">Username:</label>
-            <input
-              id="username"
-              type={"text"}
-              onChange={(e) => setUsername(e.target.value)}
-            ></input>
-            <br></br>
-            <label htmlFor="mail">Mail:</label>
-            <input
-              id="mail"
-              type={"text"}
-              onChange={(e) => setMail(e.target.value)}
-            ></input>
-            <br></br>
-            <input type={"submit"} value={"Register"}></input>
-          </form>
-        </header>
+      <header className="row-items">
+        <h1>Memoriez</h1>
+        <a href="/login">Login</a>
+      </header>
+
+      <div className="split left">
+        <div className="centered">
+          <h2>Other component</h2>
+          <p>App explanation</p>
+        </div>
+      </div>
+
+      <div className="split right">
+        <div className="centered">
+          <main>
+            <section>
+              <h1>Register here!</h1>
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  await handleRegister(userInfo);
+                }}
+              >
+                <div className="input">
+                  <label htmlFor="username">Username:</label>
+                  <input
+                    id="username"
+                    type={"text"}
+                    onChange={(e) => setUsername(e.target.value)}
+                  ></input>
+                </div>
+                <div className="input">
+                  <label htmlFor="mail">Mail:</label>
+                  <input
+                    id="mail"
+                    type={"text"}
+                    onChange={(e) => setMail(e.target.value)}
+                  ></input>
+                </div>
+                <div className="simple-center">
+                  <input
+                    type={"submit"}
+                    value={"Register"}
+                    className="button"
+                  ></input>
+                </div>
+              </form>
+            </section>
+          </main>
+        </div>
       </div>
     </>
   );
