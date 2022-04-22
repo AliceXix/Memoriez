@@ -114,10 +114,27 @@ const addMemory = app.post("/api/add-memory/:id", async (req, res, next) => {
   const userInput = req.body;
 
   if (!id) {
-    res.send({ message: "something went wrong big time" });
+    return res.send({ message: "something went wrong big time" });
   }
 
-  async function addMemory(model, input) {
+  if (!userInput.title) {
+    return res.send({ message: "something went wrong big time - title" });
+  }
+
+  if (!userInput.text) {
+    return res.send({ message: "something went wrong big time - text" });
+  }
+
+  if (!userInput.author) {
+    return res.send({ message: "something went wrong big time - author" });
+  }
+
+  if (!userInput.person) {
+    return res.send({ message: "something went wrong big time - person" });
+  }
+
+  async function addMemory(model, input): Promise<any> {
+
     const newMemory = await model.create({
       title: input.title,
       text: input.text,
@@ -127,7 +144,7 @@ const addMemory = app.post("/api/add-memory/:id", async (req, res, next) => {
     return newMemory;
   }
 
-  async function findPersonAndUpdateMemories(model, id) {
+  async function findPersonAndUpdateMemories(model, id): Promise<any> {
     const newMemory = await addMemory(Memory, userInput);
     const updatedPerson = await model.findByIdAndUpdate(id, {
        $push: { memories: newMemory },

@@ -10,13 +10,26 @@ label {
 
 input {
   max-width: 40%;
+  border: 1px solid black;
+}
+
+h1 {
+  text-align: center;
 }
 
 .box h2 {
   color: #571D0F;
 }
 
+header {
+  background-color: lightcoral;
+}
+
 /* ------------------------------- */
+
+.simple-center {
+  text-align: center;
+}
 
 .main {
     display: flex;
@@ -124,4 +137,63 @@ input {
   justify-content: space-between;
   height: 100%;
   padding: 2vh 0 2vh 1vh;
+}
+
+
+/* ---------------------- */
+
+
+/* Split the screen in half */
+.split {
+  height: 100%;
+  width: 44.5%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* text-align: center; */
+  background-color: orange;
+  width: 100%;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.scrollable {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.scrollable-two {
+  background-color: #571D0F;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.wrapper-nav {
+  height: 60vh;
 }
