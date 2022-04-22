@@ -5,6 +5,10 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as React from "react";
 import { extendTheme, ChakraProvider } from "@chakra-ui/react";
+import {
+  QueryClientProvider,
+  QueryClient
+} from 'react-query';
 
 const colors = {
   brand: {
@@ -16,11 +20,15 @@ const colors = {
 
 const theme = extendTheme({colors})
 
+const queryClient = new QueryClient();
+
 ReactDOM.render(
   <Router>
-    <ChakraProvider theme={theme}>
-      <App />
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </QueryClientProvider>
   </Router>,
   document.getElementById("root")
 );
