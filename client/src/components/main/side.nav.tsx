@@ -51,42 +51,49 @@ export default function SideNav() {
     <>
       <nav className="column-items">
         <div>
-          <Link href="/app">
+          <Link href={`/app/dashboard/${user?.user._id}`}>
             <h4>Dashboard</h4>
           </Link>
           <Link>
             <h4>Favorites</h4>
           </Link>
-          <Accordion defaultIndex={[0]} allowMultiple>
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Link>
-                    <h4>My circle</h4>
-                  </Link>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              {user?.user.circle.map((elm) => {
-                return (
-                  <AccordionPanel pb={4}>
-                    <Link>
-                      <button
-                        onClick={() => {
-                          navigate(`/app/person-details/${elm._id}`);
-                        }}
-                      >
-                        <h4>{elm.name}</h4>
-                      </button>
-                    </Link>
-                  </AccordionPanel>
-                );
-              })}
-            </AccordionItem>
-          </Accordion>
-          <Link onClick={() => {
-            navigate(`/app/add-person/${userId}`);
-          }}>
+          <div className="wrapper-nav">
+            <div className="scrollable">
+              <Accordion defaultIndex={[0]} allowMultiple>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Link>
+                        <h4>My circle</h4>
+                      </Link>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+
+                  {user?.user.circle.map((elm) => {
+                    return (
+                      <AccordionPanel pb={4}>
+                        <Link>
+                          <button
+                            onClick={() => {
+                              navigate(`/app/person-details/${elm._id}`);
+                            }}
+                          >
+                            <h4>{elm.name}</h4>
+                          </button>
+                        </Link>
+                      </AccordionPanel>
+                    );
+                  })}
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+          <Link
+            onClick={() => {
+              navigate(`/app/add-person/${userId}`);
+            }}
+          >
             <h4>Add to my circle</h4>
           </Link>
         </div>
@@ -94,10 +101,12 @@ export default function SideNav() {
           <Link>
             <h4>Help</h4>
           </Link>
-          <Link onClick={() => {
-            handleLogout();
-            navigate("/login")
-          }}>
+          <Link
+            onClick={() => {
+              handleLogout();
+              navigate("/login");
+            }}
+          >
             <h4>Logout</h4>
           </Link>
         </div>
