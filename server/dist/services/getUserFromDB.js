@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserFromDB = void 0;
 function getUserFromDB(userModel, URLInput) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(URLInput);
         const userInfos = yield userModel.findById(URLInput);
         return userInfos;
     });

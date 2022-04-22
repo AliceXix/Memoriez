@@ -34,7 +34,6 @@ app.listen(port, (err) => {
     return console.log(`server is listening on ${port}`);
 });
 const register = app.post("/api/register", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    // Read input from request
     const userInput = req.body;
     function createUser(userModel, userInput) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -46,14 +45,10 @@ const register = app.post("/api/register", (req, res, next) => __awaiter(void 0,
         });
     }
     const newUser = yield createUser(user_model_1.default, userInput);
-    // Return response from created user
     res.send({ user: `${newUser}` });
 }));
 const login = app.post("/api/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    //read input from request
     const { username, mail } = req.body;
-    console.log(`this is user ${username}, ${mail}`);
-    console.log(username);
     function getUser(userModel, username) {
         return __awaiter(this, void 0, void 0, function* () {
             let userId = userModel.findOne({ username });
@@ -61,104 +56,117 @@ const login = app.post("/api/login", (req, res, next) => __awaiter(void 0, void 
         });
     }
     let userID = yield getUser(user_model_1.default, username);
-    console.log(`this is user id ${userID}`);
-    console.log(userID._id);
     if (!userID) {
         res.send({ message: "this user does not exist" });
     }
     else {
-        //res.send({message: 'this worked fine'})
         res.send({ id: `${userID._id}` });
     }
 }));
-const getInfosFromDB = app.get("/api/dashboard/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    //read input from request
+const getUserInfoFromDB = app.get("/api/user/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params;
     if (!id) {
         res.send({ message: "something went wrong big time" });
     }
-    console.log("this is the URLInput");
-    console.log(id.id);
-    function getUserById(userModel, id) {
+    function getUserById(model, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            let user = userModel.findById(id);
+            let user = yield model.findById(id)
+                .populate('circle');
             return user;
         });
     }
     let user = yield getUserById(user_model_1.default, id.id);
-    console.log("this comes from api dashboard and is the user");
-    console.log(user);
     if (!user) {
         res.send({ message: "this user does not exist" });
     }
-    //no you do not need a "getPerson" because Person is part of the property circle of User
-    //------------------//
-    function getMemories(memoryModel, id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let memories = memoryModel.find({ author: `${id}` });
-            return memories;
-        });
-    }
-    let memory = yield getMemories(memory_model_1.default, id.id);
-    console.log("this comes from api dashboard and are the memories");
-    console.log(memory);
-    if (!memory) {
-        res.send({ message: "this user does not have any memories yet" });
-    }
-    res.send({ memory: `${memory}`, user: `${user}` });
+    res.send({ user: user });
 }));
-const getPersonDetails = app.get("/api/person/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const getPersonDetails = app.get("/api/person-details/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params;
     if (!id) {
         res.send({ message: "something went wrong big time" });
     }
-    else {
-        res.send({ message: "this is your infos" });
-    }
     function getPersonById(model, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            let person = yield model.findById({ id });
+            let person = yield model.findById(id)
+                .populate('memories');
             return person;
         });
     }
-    let personDetails = yield getPersonById(person_model_1.default, id);
+    let person = yield getPersonById(person_model_1.default, id.id);
+    if (!person) {
+        res.send({ message: "this user does not exist" });
+    }
+    res.send(person);
 }));
-const addMemory = app.post("/api/add-memory", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    //const id = req.params;
+const addMemory = app.post("/api/add-memory/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params;
     const userInput = req.body;
-    // if (!id) {
-    //   res.send({ message: "something went wrong big time" });
-    // }
+    if (!id) {
+        res.send({ message: "something went wrong big time" });
+    }
     function addMemory(model, input) {
         return __awaiter(this, void 0, void 0, function* () {
             const newMemory = yield model.create({
                 title: input.title,
                 text: input.text,
                 author: input.author,
-                person: input.person
+                person: input.person,
             });
             return newMemory;
         });
     }
-    const newMemory = yield addMemory(memory_model_1.default, userInput);
-    res.send({ memory: `${newMemory}` });
+    function findPersonAndUpdateMemories(model, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const newMemory = yield addMemory(memory_model_1.default, userInput);
+            const updatedPerson = yield model.findByIdAndUpdate(id, {
+                $push: { memories: newMemory },
+            });
+            return updatedPerson;
+        });
+    }
+    const updatedPerson = yield findPersonAndUpdateMemories(person_model_1.default, userInput.person);
+    res.send({ update: updatedPerson });
 }));
-const addPerson = app.post("/api/add-person", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    //const id = req.params;
+const addPerson = app.post("/api/add-person/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params;
     const userInput = req.body;
-    // if (!id) {
-    //   res.send({ message: "something went wrong big time" });
-    // }
+    if (!id) {
+        res.send({ message: "something went wrong big time" });
+    }
     function addPerson(model, input) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newMemory = yield model.create({
+            const newPerson = yield model.create({
                 name: input.name,
                 relationship: input.relationship,
             });
-            return newMemory;
+            return newPerson;
         });
     }
-    const newPerson = yield addPerson(person_model_1.default, userInput);
-    res.send({ person: `${newPerson}` });
+    function findUserAndUpdateCircle(model, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const newPerson = yield addPerson(person_model_1.default, userInput);
+            const updatedUser = yield model.findByIdAndUpdate(id, {
+                $push: { circle: newPerson },
+            });
+            return updatedUser;
+        });
+    }
+    const updatedUser = yield findUserAndUpdateCircle(user_model_1.default, id.id);
+    res.send({ update: updatedUser });
+}));
+const getMemoryDetails = app.get("/api/memory-details/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params;
+    if (!id) {
+        res.send({ message: "something went wrong big time" });
+    }
+    function getMemoryById(model, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let memory = yield model.findById(id);
+            return memory;
+        });
+    }
+    let memoryDetails = yield getMemoryById(memory_model_1.default, id.id);
+    res.send(memoryDetails);
 }));
 //# sourceMappingURL=app.js.map
