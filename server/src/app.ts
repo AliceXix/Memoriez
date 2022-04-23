@@ -73,6 +73,7 @@ const getUserInfoFromDB = app.get("/api/user/:id", async (req, res, next) => {
     let user: any = await
     model.findById(id)
                     .populate('circle')
+                    .populate('favorites')
     return user;
   }
 
@@ -201,4 +202,45 @@ const getMemoryDetails = app.get("/api/memory-details/:id", async (req, res, nex
       let memoryDetails = await getMemoryById(Memory, id.id);
 
       res.send(memoryDetails);
+})
+
+const addFavorite = app.post("/api/add-favorite/:id", async (req, res, next) => {
+  
+  const userId = req.params.id;
+
+  const memoryId = req.body.memoryId;
+  //needs to be from widget
+
+  async function addFavorite(model, input): Promise<any> {
+
+    const favorite = await model.findById(input);
+    return favorite
+  }
+
+
+  async function findUserAndUpdateFavorites(model: any, id: string, memoryId: string): Promise<any> {
+    const newFavorite = await addFavorite(Memory, memoryId);
+    console.log({newFavorite})
+    const updatedUser = await model.findByIdAndUpdate(
+      id,
+      {
+        $push: { favorites: newFavorite._id },
+      },
+      {
+        new: true
+      }
+    );
+    console.log({ updatedUser });
+    return updatedUser;
+  }
+
+  const updatedUser = await findUserAndUpdateFavorites(
+    User,
+    userId,
+    memoryId
+  );
+  
+
+ res.send({ update: updatedUser });
+
 })
