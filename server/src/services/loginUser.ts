@@ -3,5 +3,6 @@ export function doesUserExists(userModel, userInput) {
         username: userInput.username,
         mail: userInput.mail,
     } )
+    
     return userFromDB
 }
