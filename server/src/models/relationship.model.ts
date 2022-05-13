@@ -12,6 +12,5 @@ const relationshipSchema = new Schema<RelationshipType>({
 });
 
 const Relationship = model<RelationshipType>("Relationship", relationshipSchema);
-//TODO
 
 export default Relationship;

@@ -13,7 +13,7 @@ export default function AddMemoryForm() {
     const [title, setTitle] = React.useState("");
     const [text, setText] = React.useState("");
     const [person, setPerson] = React.useState<string[]>([]);
-    const [memoryCount, setMemoryCount] = React.useState("0");
+    const [memoryCount] = React.useState("0");
     const [user, setUser] = React.useState<null | userData>();
     const userInput: { title: string; text: string; person: string[] } = {
         title: title,
@@ -25,7 +25,6 @@ export default function AddMemoryForm() {
         "memoryWidgetUpdate",
         memoryCount
     );
-    console.log(memoryCount);
 
 
     async function getProfileInfos(id: string) {

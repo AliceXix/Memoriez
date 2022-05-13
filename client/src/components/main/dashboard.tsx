@@ -57,7 +57,6 @@ export default function Dashboard() {
 
                 <section className="widgets">
                     {user?.user.circle.map((elm) => {
-                        //TODO
                         return <PersonWidget key={elm._id} _id={elm._id} name={elm.name}/>;
                     })}
                 </section>

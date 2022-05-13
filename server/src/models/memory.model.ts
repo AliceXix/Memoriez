@@ -28,6 +28,5 @@ export const memorySchema = new Schema<MemoryType>(
 );
 
 const Memory = model<MemoryType>("Memory", memorySchema);
-//TODO
 
 export default Memory;

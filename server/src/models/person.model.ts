@@ -24,6 +24,5 @@ const personSchema = new Schema<PersonType>(
 );
 
 const Person = model<PersonType>("Person", personSchema);
-//TODO
 
 export default Person;

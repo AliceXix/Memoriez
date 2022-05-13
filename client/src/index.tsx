@@ -10,7 +10,6 @@ import {
 } from 'react-query';
 
 const colors = {
-    //TODO
     brand: {
         900: "#1a365d",
         800: "#153e75",

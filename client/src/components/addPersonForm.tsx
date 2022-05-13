@@ -20,7 +20,6 @@ export default function AddPersonForm() {
         );
 
         const newPerson = await fetcher.json();
-        //TODO
         return newPerson;
     }
 

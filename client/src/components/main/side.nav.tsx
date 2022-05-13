@@ -18,7 +18,6 @@ export interface userData {
         username: string;
         mail: string;
         favorites: string[];
-        //TODO
     };
     _id: string;
 }
@@ -79,7 +78,6 @@ export default function SideNav() {
                                     </h2>
 
                                     {user?.user.circle.map((elm) => {
-                                        //TODO
                                         return (
                                             <AccordionPanel pb={4}>
                                                 <Link>

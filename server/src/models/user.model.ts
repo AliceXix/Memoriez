@@ -30,6 +30,5 @@ const userSchema = new Schema<UserType>({
 });
 
 const User= model<UserType>("User", userSchema);
-//TODO
 
 export default User

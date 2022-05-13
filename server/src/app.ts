@@ -8,7 +8,6 @@ import Person from "./models/person.model";
 
 const app = express();
 const port = 3000;
-//TODO
 
 
 app.use(
