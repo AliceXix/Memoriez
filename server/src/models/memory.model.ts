@@ -11,20 +11,20 @@ export interface MemoryType {
 
 
 export const memorySchema = new Schema<MemoryType>(
-  {
-    title: {
-        type: String,
-    },
-    text: {
-        type: String,
-    },
-    author: {
-        type: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    },
-    person: {
-        type: [{ type: Schema.Types.ObjectId, ref: "Person" }],
-    },
-  }
+    {
+        title: {
+            type: String,
+        },
+        text: {
+            type: String,
+        },
+        author: {
+            type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+        },
+        person: {
+            type: [{ type: Schema.Types.ObjectId, ref: "Person" }],
+        },
+    }
 );
 
 const Memory = model<MemoryType>("Memory", memorySchema);

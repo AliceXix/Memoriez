@@ -5,10 +5,12 @@ import "./db";
 import User from "./models/user.model";
 import Memory from "./models/memory.model";
 import Person from "./models/person.model";
+import { UserService } from "./services/UserService";
 
 const app = express();
 const port = 3000;
 
+const userService = new UserService(User);
 
 app.use(
     cors({
@@ -30,25 +32,13 @@ app.listen(port, (err) => {
 
 const register = app.post("/api/register", async (req, res, next) => {
     const userInput = req.body;
-
-
-    async function createUser(userModel: any, userInput: any) {
-        const newUser: any = await userModel.create({
-            username: userInput.username,
-            mail: userInput.mail,
-        });
-
-        return newUser;
-    }
-
-    const newUser = await createUser(User, userInput)
+    const newUser = await userService.createUser(userInput);
 
     res.send({ user: `${newUser}` });
 });
 
 const login = app.post("/api/login", async (req, res, next) => {
     const { username, mail } = req.body;
-
 
     async function getUser(userModel: any, username: any) {
         let userId = userModel.findOne({ username });
@@ -58,9 +48,8 @@ const login = app.post("/api/login", async (req, res, next) => {
 
     let userID: any = await getUser(User, username);
 
-
     if (!userID) {
-        res.send({ message: "this user does not exist" });
+        res.status(400).send({ message: "this user does not exist" });
     } else {
         res.send({ id: `${userID._id}` });
     }
@@ -101,10 +90,10 @@ const getPersonDetails = app.get("/api/person-details/:id", async (req, res, nex
     }
 
     async function getPersonById(model: typeof Person, id: any) {
-        let person: any = await 
+        let person: any = await
 
-        model.findById(id)
-                    .populate('memories')
+            model.findById(id)
+                .populate('memories')
 
         return person;
     }
@@ -149,7 +138,7 @@ const addMemory = app.post("/api/add-memory/:id", async (req, res, next) => {
             author: input.author,
             person: input.person,
         });
-        
+
         return newMemory;
     }
 
@@ -199,7 +188,7 @@ const addPerson = app.post("/api/add-person/:id", async (req, res, next) => {
 });
 
 const getMemoryDetails = app.get("/api/memory-details/:id", async (req, res, next) => {
-    const id =req.params;
+    const id = req.params;
 
     if (!id) {
         res.send({ message: "something went wrong big time" });
