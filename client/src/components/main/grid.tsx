@@ -17,7 +17,7 @@ export default function GridLayout({children}: Props) {
         <>
             <Grid
                 h="100vh"
-                gap={"5px"}
+                gap="5px"
                 gridTemplateRows={` 1fr .5fr 1fr 1fr 1fr 1fr 1fr 1fr .2fr`}
                 gridTemplateColumns={` 1fr .5fr 7fr .2fr`}
                 gridTemplateAreas={[

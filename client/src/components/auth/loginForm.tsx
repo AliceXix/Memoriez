@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface LoginOutput {
     id: string;
@@ -12,7 +12,7 @@ export default function LoginForm() {
         mail: mail,
         username: username,
     };
-    const navigate: NavigateFunction = useNavigate();
+    const navigate = useNavigate();
 
 
     async function handleLogin(userInfo: any) {
@@ -59,7 +59,7 @@ export default function LoginForm() {
               <section>
                 <h1>Login here!</h1>
                 <form
-                  onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
+                  onSubmit={async (e) => {
                     handleSubmit(e);
                   }}
                 >
@@ -67,8 +67,8 @@ export default function LoginForm() {
                         <label htmlFor="username">Username:</label>
                         <input
                             id="username"
-                            type={"text"}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            type="text"
+                            onChange={(e) =>
                             setUsername(e.target.value)
                             }
                         ></input>
@@ -78,8 +78,8 @@ export default function LoginForm() {
                         <label htmlFor="mail">Mail:</label>
                         <input
                             id="mail"
-                            type={"text"}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            type="text"
+                            onChange={(e) =>
                             setMail(e.target.value)
                             }
                         ></input>
@@ -87,8 +87,8 @@ export default function LoginForm() {
 
                     <div className="simple-center">
                         <input
-                            type={"submit"}
-                            value={"Login"}
+                            type="submit"
+                            value="Login"
                             className="button"
                         ></input>
                     </div>

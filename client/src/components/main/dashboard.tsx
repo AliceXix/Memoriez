@@ -35,7 +35,7 @@ export default function Dashboard() {
     }
 
     React.useEffect(() => {
-    getProfileInfos(id);
+        getProfileInfos(id);
     }, [id]);
 
 

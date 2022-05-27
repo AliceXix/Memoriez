@@ -4,10 +4,11 @@ export default function RegisterForm() {
     const [mail, setMail] = React.useState("");
     const [username, setUsername] = React.useState("");
     const userInfo = { mail: mail, username: username };
+    //TODO
 
 
     async function handleRegister(userInfo: any) {
-        const fetcher: Response = await fetch("http://localhost:3000/api/register", {
+        const fetcher = await fetch("http://localhost:3000/api/register", {
             headers: {
                 "Content-type": "application/json",
             },
@@ -50,7 +51,7 @@ export default function RegisterForm() {
                                     <label htmlFor="username">Username:</label>
                                     <input
                                         id="username"
-                                        type={"text"}
+                                        type="text"
                                         onChange={(e) => setUsername(e.target.value)}
                                     ></input>
                                 </div>
@@ -59,15 +60,15 @@ export default function RegisterForm() {
                                     <label htmlFor="mail">Mail:</label>
                                     <input
                                         id="mail"
-                                        type={"text"}
+                                        type="text"
                                         onChange={(e) => setMail(e.target.value)}
                                     ></input>
                                 </div>
 
                                 <div className="simple-center">
                                     <input
-                                        type={"submit"}
-                                        value={"Register"}
+                                        type="submit"
+                                        value="Register"
                                         className="button"
                                     ></input>
                                 </div>

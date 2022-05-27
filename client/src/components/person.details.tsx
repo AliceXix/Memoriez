@@ -60,17 +60,17 @@ return (
                 "personDetails details details"`,
             ]}
         >
-            <GridItem bg="tomato" gridArea={"personDetails"}>
+            <GridItem bg="tomato" gridArea="personDetails">
                 {person?.name}
                 {person?.relationship}
             </GridItem>
 
-            <GridItem gridArea={"details"} bg="blue">
+            <GridItem gridArea="details" bg="blue">
                 <div className="scrollable">
-                    <Wrap spacing="30px" bg="yellow" height={"70vh"}>
+                    <Wrap spacing="30px" bg="yellow" height="70vh">
                         {person?.memories.map((elm) => {
                             return (
-                                <WrapItem height={"180px"} width={"30%"} bg="purple">
+                                <WrapItem height="180px" width="30%" bg="purple">
                                     <MemoryWidget key={elm._id} title={elm.title} _id={elm._id} />
                                 </WrapItem>
                             );

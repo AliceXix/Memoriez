@@ -35,12 +35,12 @@ export default function AddPersonForm() {
                 <label htmlFor="name">Name:</label>
                 <input
                     id="name"
-                    type={"text"}
+                    type="text"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                 ></input>
                 <input
-                    type={"submit"}
-                    value={"Add new person!"}
+                    type="submit"
+                    value="Add new person!"
                     onClick={() => {
                         navigate(-1)
                     }}

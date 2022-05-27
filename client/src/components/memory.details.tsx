@@ -54,15 +54,15 @@ export default function MemoryDetails({children}: MemoryDetailsProps) {
                     "button"`,
                 ]}
             >
-                <GridItem gridArea={"title"} bg="purple">
+                <GridItem gridArea="title" bg="purple">
                     <h2>Memory title: {memory?.title}</h2>
                 </GridItem>
 
-                <GridItem gridArea={"text"} bg="orange">
+                <GridItem gridArea="text" bg="orange">
                     <p>{memory?.text}</p>
                 </GridItem>
 
-                <GridItem gridArea={"button"}>
+                <GridItem gridArea="button">
                     <button
                         className="button-back"
                         onClick={() => {

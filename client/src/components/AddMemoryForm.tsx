@@ -21,7 +21,9 @@ export default function AddMemoryForm() {
         person: person,
     };
     let userId: string | null = localStorage.getItem("userId");
-    const memoryCountUpdate = localStorage.setItem(
+
+    /**updates the memory count**/
+    localStorage.setItem(
         "memoryWidgetUpdate",
         memoryCount
     );
@@ -102,7 +104,7 @@ export default function AddMemoryForm() {
                 <label htmlFor="title"></label>
                 <input
                     id="title"
-                    type={"text"}
+                    type="text"
                     placeholder="title"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setTitle(e.target.value)
@@ -112,7 +114,7 @@ export default function AddMemoryForm() {
                 <label htmlFor="text"></label>
                 <input
                     id="text"
-                    type={"text"}
+                    type="text"
                     placeholder="memory"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setText(e.target.value);

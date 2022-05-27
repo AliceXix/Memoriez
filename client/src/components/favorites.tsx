@@ -34,12 +34,12 @@ export default function Favorites() {
         <>
             <p>hello</p>
 
-            <GridItem gridArea={"details"} bg="blue">
+            <GridItem gridArea="details" bg="blue">
                     <div className="scrollable">
-                        <Wrap spacing="30px" bg="yellow" height={"70vh"}>
+                        <Wrap spacing="30px" bg="yellow" height="70vh">
                             {user?.user.favorites.map((elm: any) => {
                                 return (
-                                    <WrapItem height={"180px"} width={"30%"} bg="purple">
+                                    <WrapItem height="180px" width="30%" bg="purple">
                                         <MemoryWidget key={elm?._id} title={elm?.title} _id={elm?._id} />
                                     </WrapItem>
                                 );
