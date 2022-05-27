@@ -1,11 +1,11 @@
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import "./db";
-import User from "./models/user.model";
-import Memory from "./models/memory.model";
-import Person from "./models/person.model";
-import { UserService } from "./services/UserService";
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import './db';
+import User from './models/user.model';
+import Memory from './models/memory.model';
+import Person from './models/person.model';
+import { UserService } from './services/UserService';
 
 const app = express();
 const port = 3000;
@@ -14,14 +14,14 @@ const userService = new UserService(User);
 
 app.use(
     cors({
-        origin: "*",
+        origin: '*',
     })
 );
 app.use(bodyParser.json());
 
 //@ts-ignore
 app.listen(port, (err) => {
-    console.log("Listening and we know of cors:", cors);
+    console.log('Listening and we know of cors:', cors);
     if (err) {
         return console.error(err);
     }
@@ -30,14 +30,14 @@ app.listen(port, (err) => {
 });
 
 
-const register = app.post("/api/register", async (req, res, next) => {
+const register = app.post('/api/register', async (req, res, next) => {
     const userInput = req.body;
     const newUser = await userService.createUser(userInput);
 
     res.send({ user: `${newUser}` });
 });
 
-const login = app.post("/api/login", async (req, res, next) => {
+const login = app.post('/api/login', async (req, res, next) => {
     const { username, mail } = req.body;
 
     async function getUser(userModel: any, username: any) {
@@ -49,24 +49,24 @@ const login = app.post("/api/login", async (req, res, next) => {
     let userID: any = await getUser(User, username);
 
     if (!userID) {
-        res.status(400).send({ message: "this user does not exist" });
+        res.status(400).send({ message: 'this user does not exist' });
     } else {
-        res.send({ id: `${userID._id}` });
+        res.send(userID._id);
     }
 });
 
-const getUserInfoFromDB = app.get("/api/user/:id", async (req, res, next) => {
+const getUserInfoFromDB = app.get('/api/user/:id', async (req, res, next) => {
     const id = req.params;
 
     if (!id) {
-        res.send({ message: "something went wrong big time" });
+        res.send({ message: 'something went wrong big time' });
     }
 
     async function getUserById(model: typeof User, id: any) {
         let user: any = await model
             .findById(id)
-            .populate("circle")
-            .populate("favorites");
+            .populate('circle')
+            .populate('favorites');
 
         return user;
     }
@@ -74,17 +74,17 @@ const getUserInfoFromDB = app.get("/api/user/:id", async (req, res, next) => {
     let user: any = await getUserById(User, id.id);
 
     if (!user) {
-        res.send({ message: "this user does not exist" });
+        res.send({ message: 'this user does not exist' });
     }
 
     res.send({ user: user });
 });
 
-const getPersonDetails = app.get("/api/person-details/:id", async (req, res, next) => {
+const getPersonDetails = app.get('/api/person-details/:id', async (req, res, next) => {
     const id = req.params;
 
     if (!id) {
-        res.send({ message: "something went wrong big time" });
+        res.send({ message: 'something went wrong big time' });
     } else {
         console.log(id.id)
     }
@@ -101,44 +101,46 @@ const getPersonDetails = app.get("/api/person-details/:id", async (req, res, nex
     let person: any = await getPersonById(Person, id.id);
 
     if (!person) {
-        res.send({ message: "this user does not exist" });
+        res.send({ message: 'this user does not exist' });
     } else {
         res.send(person);
     }
 });
 
-const addMemory = app.post("/api/add-memory/:id", async (req, res, next) => {
+const addMemory = app.post('/api/add-memory/:id', async (req, res, next) => {
     const id = req.params;
     const userInput = req.body;
+    console.log(`This is userinput: ${userInput}`)
+    console.log(userInput)
 
     if (!id) {
-        return res.send({ message: "something went wrong big time" });
+        return res.send({ message: 'something went wrong big time' });
     }
 
     if (!userInput.title) {
-        return res.send({ message: "something went wrong big time - title" });
+        return res.send({ message: 'something went wrong big time - title' });
     }
 
     if (!userInput.text) {
-        return res.send({ message: "something went wrong big time - text" });
+        return res.send({ message: 'something went wrong big time - text' });
     }
 
     if (!userInput.author) {
-        return res.send({ message: "something went wrong big time - author" });
+        return res.send({ message: 'something went wrong big time - author' });
     }
 
     if (!userInput.person) {
-        return res.send({ message: "something went wrong big time - person" });
+        return res.send({ message: 'something went wrong big time - person' });
     }
 
     async function addMemory(model, input): Promise<any> {
         const newMemory = await model.create({
-            title: input.title,
-            text: input.text,
-            author: input.author,
-            person: input.person,
+            title : input.title,
+            text : input.text
         });
 
+        console.log('This is new memory')
+        console.log(newMemory)
         return newMemory;
     }
 
@@ -152,16 +154,17 @@ const addMemory = app.post("/api/add-memory/:id", async (req, res, next) => {
     }
 
     const updatedPerson = await findPersonAndUpdateMemories(Person, userInput.person);
+    console.log(`This is updatedperson ${updatedPerson}`)
 
     res.send({ update: updatedPerson });
 });
 
-const addPerson = app.post("/api/add-person/:id", async (req, res, next) => {
+const addPerson = app.post('/api/add-person/:id', async (req, res, next) => {
     const id = req.params;
     const userInput = req.body;
 
     if (!id) {
-        res.send({ message: "something went wrong big time" });
+        res.send({ message: 'something went wrong big time' });
     }
 
     async function addPerson(model, input) {
@@ -187,11 +190,11 @@ const addPerson = app.post("/api/add-person/:id", async (req, res, next) => {
     res.send({ update: updatedUser });
 });
 
-const getMemoryDetails = app.get("/api/memory-details/:id", async (req, res, next) => {
+const getMemoryDetails = app.get('/api/memory-details/:id', async (req, res, next) => {
     const id = req.params;
 
     if (!id) {
-        res.send({ message: "something went wrong big time" });
+        res.send({ message: 'something went wrong big time' });
     }
 
     async function getMemoryById(model, id) {
@@ -205,7 +208,7 @@ const getMemoryDetails = app.get("/api/memory-details/:id", async (req, res, nex
     res.send(memoryDetails);
 })
 
-const addFavorite = app.post("/api/add-favorite/:id", async (req, res, next) => {
+const addFavorite = app.post('/api/add-favorite/:id', async (req, res, next) => {
     const userId = req.params.id;
     const memoryId = req.body.memoryId;
 

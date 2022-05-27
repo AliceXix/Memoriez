@@ -2,7 +2,7 @@ export async function handleLogin (userInfo:any) {
 
     await fetch('http://localhost:3000/api/login', {
         headers: {
-            "Content-type": "application/json",
+            'Content-type': 'application/json',
         },
         method: 'POST',
         body: JSON.stringify(userInfo)

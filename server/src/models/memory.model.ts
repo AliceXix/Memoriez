@@ -1,6 +1,6 @@
-import { Schema, model, Model } from "mongoose";
-import { UserType } from "./user.model";
-import { PersonType } from "./person.model";
+import { Schema, model, Model } from 'mongoose';
+import { UserType } from './user.model';
+import { PersonType } from './person.model';
 
 export interface MemoryType {
     title: string;
@@ -19,14 +19,14 @@ export const memorySchema = new Schema<MemoryType>(
             type: String,
         },
         author: {
-            type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+            type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         },
         person: {
-            type: [{ type: Schema.Types.ObjectId, ref: "Person" }],
+            type: [{ type: Schema.Types.ObjectId, ref: 'Person' }],
         },
     }
 );
 
-const Memory = model<MemoryType>("Memory", memorySchema);
+const Memory = model<MemoryType>('Memory', memorySchema);
 
 export default Memory;
