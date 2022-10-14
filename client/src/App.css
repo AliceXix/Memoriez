@@ -1,32 +1,202 @@
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
 body {
-    background-color: #F8F2E7;
-    all: unset;
+  /* all: unset; */
+  background-color: red;
 }
 
-label {
-  margin-bottom: 0.3em;
-  color: #571D0F;
+nav {
+  background-color: #ECFCCB;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25vh;
 }
 
-input {
-  max-width: 40%;
-  border: 1px solid black;
+h5 {
+  padding: 1em;
 }
 
 h1 {
+  padding: 1.5em;
+  font-size: 42rem;
+}
+
+h3 {
+  font-size: larger !important;
+  font-weight: bolder !important;
+}
+
+.center-items h3 {
   text-align: center;
 }
 
-.box h2 {
-  color: #571D0F;
+hr {
+  height: 40px;
+  color: #365314;
+  background-color: #365314;
 }
 
-header {
-  background-color: lightcoral;
-}
 
 /* ------------------------------- */
 
+
+.main {
+  background-color: #F7FEE7;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: .17fr 1fr;
+  height: 100%;
+}
+
+.grid-sub-container {
+  display: grid;
+  grid-template-rows: 0.5fr 1.5fr;
+}
+
+.header-grid-container {
+  display: grid;
+  grid-template-columns: 4fr 2.5fr;
+}
+
+.container-logout {
+  padding: 1.5em;
+}
+
+.button-dark {
+  background-color: #65A30D;
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 100%;
+  padding: 0.5em;
+  box-shadow: 2px 2px 5px;
+}
+
+.button-light {
+  background-color: #A3E635;
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 100%;
+  padding: 1.5em;
+  box-shadow: 2px 2px 5px;
+}
+
+.search-bar {
+  padding: 1.5em;
+  margin: 1em 0em 0em 0em;
+}
+
+.add-person {
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.center-items {
+  display: flex;
+  justify-content: center;
+}
+
+.favorite-memoriez {
+  padding: 2.5em 0em;
+}
+
+.memory-widget {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #ECFCCB;
+  padding: 4em 1em 1em 1em;
+  height: 38vh;
+  width: 23vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.memory-widget h3 {
+  font-weight: bolder;
+  font-size: large;
+  margin-bottom: 0.4em;
+}
+
+.memory-widget p {
+  font-size: small;
+  /* overflow: hidden;
+      display: -webkit-box;
+      /* -webkit-line-clamp: 4; */
+  /* -webkit-box-orient: vertical; */
+}
+
+.flex-base {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .memory-widget button {
+  align-self: center;
+  padding: 1em;
+} */
+
+.centered-btn {
+  position: relative;
+  z-index: 100;
+  padding: 1em;
+}
+
+/* .memories-wrapper {
+  margin: 0em 4em;
+} */
+
+.memories-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4em;
+  margin: 0.25em 4em;
+}
+
+
+/* ------------------------------- */
+
+.memory-detail-widget {
+  background-color: #F7FEE7;
+  border: 3px solid #365314;
+  border-radius: 30px;
+  height: 90%;
+  margin: 0em 4em;
+}
+
+.memory-detail-widget h2 {
+  font-weight: bold;
+  font-size: large;
+}
+
+.memory-detail-widget p {
+  margin: 0em 4em 2em 4em;
+}
+
+.memory-detail-widget header {
+  margin: 4em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.memory-detail-widget button {
+  max-height: 5vh;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+
+/* ------------------------------- */
+/* 
 .simple-center {
   text-align: center;
 }
@@ -137,49 +307,25 @@ header {
   justify-content: space-between;
   height: 100%;
   padding: 2vh 0 2vh 1vh;
+} */
+.column-items{
+  position: fixed;
+}
+
+.nav-parent {
+  width: 250px;
+}
+
+.header-container {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
 }
 
 
 /* ---------------------- */
 
-
-/* Split the screen in half */
-.split {
-  height: 100%;
-  width: 44.5%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-/* Control the left side */
-.left {
-  left: 0;
-}
-
-/* Control the right side */
-.right {
-  right: 0;
-}
-
-/* If you want the content centered horizontally and vertically */
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* text-align: center; */
-  background-color: orange;
-  width: 100%;
-}
-
-/* Style the image inside the centered container, if needed */
-.centered img {
-  width: 150px;
-  border-radius: 50%;
-}
 
 .scrollable {
   height: 100%;
@@ -187,13 +333,132 @@ header {
   overflow-y: scroll;
 }
 
-.scrollable-two {
+/* .scrollable-two {
   background-color: #571D0F;
   height: 100%;
   width: 100%;
   overflow-y: scroll;
-}
+} */
 
 .wrapper-nav {
-  height: 60vh;
+  height: 50vh;
+  padding: 1.5em;
+}
+
+.scrollable div {
+  padding: 0.5em;
+}
+
+.row-items {
+
+  width: 100%;
+
+  border-bottom: 1px solid #eee;
+}
+
+
+div#root {
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: calc(100% - 80px);
+}
+
+.button-search-parent {
+  padding: 1.5em;
+}
+
+.memory-details-link {
+  position:absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 50;
+}
+
+/* .addmemoryform-text {
+  width: 100%;
+  height: 10em;
+} */
+
+#text {
+  width: 100%;
+  height: 10em;
+  background-color: unset;
+}
+
+
+.auth-wrapper {
+  background-color: #ECFCCB;
+  height: 100vh;
+}
+
+.auth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #365314;
+}
+
+.auth-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.auth-left{
+  min-width: 49%;
+}
+
+.auth-right {
+
+  min-width: 49%;
+  padding: 5em;
+
+}
+
+.auth-middle {
+  background-color: #365314;
+  min-width: 3px;
+  height: 70%;
+  border-radius: 50px;
+}
+
+.auth-button {
+  background-color: #A3E635;
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 30%;
+  padding: 1em;
+  box-shadow: 2px 2px 5px;
+}
+
+.auth-section-right > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-section-right > form > div {
+  width: 100%;
+  padding: 1em;
+}
+
+.auth-button-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 3em;
+}
+
+.auth-section-right {
+  margin: 3em 6em 0 0;
 }
