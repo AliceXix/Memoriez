@@ -16,6 +16,11 @@ export default function RegisterForm() {
 			body: JSON.stringify(userInfo),
 		});
 		const newUser : {user : string} = await fetcher.json();
+
+    if (newUser) {
+      window.alert("You have succesfully been registered. You can no proceed to login. Thank you for your trust!")
+    }
+
 		return newUser;
 	}
 
