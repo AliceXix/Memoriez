@@ -1,3 +1,4 @@
+import { Input } from "@chakra-ui/react";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { memoryData } from "../memory.details";
@@ -42,61 +43,73 @@ export default function LoginForm() {
 	}
 
 	return (
-		<>
-			<main className="auth-wrapper">
-				<header>
-					<h1>Memoriez</h1>
-					<a href="/">Register</a>
-				</header>
+    <>
+      <main className="auth-wrapper">
+        <header className="auth-header">
+          <h1>Memoriez</h1>
+          <a href="/">Register</a>
+        </header>
 
-				<div>
-					<div>
-						<h2>Other component</h2>
-						<p>App explanation</p>
-					</div>
-				</div>
+        <div className="auth-body">
+          <div className="auth-left">
+            <h2>Other component</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+              fringilla quam sit amet nulla ullamcorper, eleifend commodo ligula
+              finibus. Sed dictum auctor nisi a posuere. Donec id nibh sed
+              tortor tempus hendrerit. Curabitur quis leo ultrices, pharetra
+              libero non, tincidunt orci. In ut consectetur libero, vel
+              scelerisque mi. Nullam vulputate erat odio, quis egestas libero
+              molestie sed. Proin nec ex nisl. Fusce ullamcorper tortor in risus
+              porttitor eleifend. Nunc diam velit, varius quis elit quis,
+              volutpat ornare odio. Aenean ac neque vitae felis lobortis tempor
+              vitae non nunc. Curabitur nibh lacus, mollis dictum congue eu,
+              consequat in lacus. Sed et sapien ex. Aenean pellentesque sem et
+              erat vehicula feugiat. Proin id fermentum nisi, nec congue elit.
+              Morbi vestibulum scelerisque tortor, sit amet ornare odio
+              venenatis ac. Etiam dictum eros feugiat nulla dignissim maximus.
+            </p>
+          </div>
+        
 
-				<div>
-					<div>
-						<main>
-							<section>
-								<h1>Login here!</h1>
-								<form
-									onSubmit={async (e) => {
-									handleSubmit(e);
-									}}
-									>
-									<div>
-										<label htmlFor="username">Username:</label>
-										<input
-											id="username"
-											type="text"
-											onChange={(e) => setUsername(e.target.value)}
-											></input>
-									</div>
+        <div className="auth-middle"></div>
 
-									<div>
-										<label htmlFor="mail">Mail:</label>
-										<input
-											id="mail"
-											type="text"
-											onChange={(e) => setMail(e.target.value)}
-											></input>
-									</div>
+          <div className="auth-right">
+              <section className="auth-section-right">
 
-									<div>
-										<input
-											type="submit"
-											value="Login"
-											className="button"
-											></input>
-									</div>
-								</form>
-							</section>
-						</main>
-					</div>
-				</div>
-			</main>
-		</>
+                <form
+                  onSubmit={async (e) => {
+                    handleSubmit(e);
+                  }}
+                >
+                  <div>
+                    <Input
+                      variant="altered-flush"
+                      placeholder="Username..."
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </div>
+
+                  <div>
+                    <Input
+                      variant="altered-flush"
+					  placeholder="Mail..."
+                      onChange={(e) => setMail(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="auth-button-wrapper">
+                    <input
+                      type="submit"
+                      value="Login"
+                      className="auth-button"
+                    ></input>
+                  </div>
+                </form>
+              </section>
+          </div>
+        </div>
+      </main>
+    </>
   );
 }

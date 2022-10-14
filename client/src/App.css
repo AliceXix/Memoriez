@@ -415,10 +415,11 @@ div#root {
 
 .auth-left{
   min-width: 49%;
+  height: 70%;
+  padding: 5em;
 }
 
 .auth-right {
-
   min-width: 49%;
   padding: 5em;
 
