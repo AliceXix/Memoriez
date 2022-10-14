@@ -1,12 +1,12 @@
 import { Schema, model, Model } from 'mongoose';
-import { UserType } from './user.model';
 import { PersonType } from './person.model';
 
 export interface MemoryType {
     title: string;
     text: string;
-    author: UserType[];
-    person: PersonType[];
+    author: string;
+    person: PersonType;
+    _id: string
 }
 
 
@@ -19,10 +19,10 @@ export const memorySchema = new Schema<MemoryType>(
             type: String,
         },
         author: {
-            type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+            type: String,
         },
         person: {
-            type: [{ type: Schema.Types.ObjectId, ref: 'Person' }],
+            type:  Schema.Types.ObjectId, ref: 'Person',
         },
     }
 );
