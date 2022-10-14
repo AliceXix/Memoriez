@@ -1,16 +1,16 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 export interface RelationshipType {
-  type: string
+    type: string
 }
 
+
 const relationshipSchema = new Schema<RelationshipType>({
-  type: {
-    type: String,
-  },
+    type: {
+            type: String,
+    },
 });
 
-const Relationship = model<RelationshipType>("Relationship", relationshipSchema);
-
+const Relationship = model<RelationshipType>('Relationship', relationshipSchema);
 
 export default Relationship;

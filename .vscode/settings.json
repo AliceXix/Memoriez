@@ -4,5 +4,6 @@
         "Chakra",
         "Formik",
         "Memoriez"
-    ]
+    ],
+    "editor.tabSize": 4
 }
