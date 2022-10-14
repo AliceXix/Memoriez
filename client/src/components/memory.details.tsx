@@ -1,78 +1,101 @@
-import { Grid, GridItem } from "@chakra-ui/react";
 import * as React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { userData } from "./main/dashboard";
+import { UserData } from "./main/side.nav";
 import { personData } from "./person.details";
 
 export interface memoryData {
-    title: string;
-    text: string;
-    author: userData[];
-    person: personData[];
+	title: string;
+	text: string;
+	author: UserData[];
+	person: personData[];
+	_id: string;
 }
 
 interface MemoryDetailsProps {
-    children?: React.ReactNode;
+	children?: React.ReactNode;
 }
 
-export default function MemoryDetails({children}: MemoryDetailsProps) {
-    const [memory, setMemory] = React.useState<null | memoryData>();
-    const navigate = useNavigate();
-    let { id } = useParams();
+export default function MemoryDetails({ children }: MemoryDetailsProps) {
+	const [memory, setMemory] = React.useState<null | memoryData>();
+	const navigate = useNavigate();
+	let { id } = useParams();
 
+	async function getMemory(id: any) {
+		const fetcher = await fetch(
+			`http://localhost:3000/api/memory-details/${id}`,
+			{
+				method: "GET",
+			}
+		);
+		const data: memoryData = await fetcher.json();
+		setMemory(data);
 
-    async function getMemory(id: any) {
-        const fetcher = await fetch(
-            `http://localhost:3000/api/memory-details/${id}`,
-            {
-            method: "GET",
-            }
-        );
-        const data: memoryData = await fetcher.json();
-        setMemory(data);
+		return data;
+	}
 
-        return data;
-    };
+	React.useEffect(() => {
+		getMemory(id);
+	}, [id]);
 
-    React.useEffect(() => {
-        getMemory(id);
-    }, [id]);
+	const person: personData[] | undefined = memory?.person;
 
+	function handlePerson(person: any | undefined) {
+		if (person === undefined) {
+			return "no person attributed";
+		} else {
+			return person.name;
+		}
+	}
 
-    return (
-        <>
-            <Grid
-                h="100%"
-                gap={1.5}
-                gridTemplateRows={` .2fr 1fr .05fr`}
-                gridTemplateColumns={`1fr`}
-                gridTemplateAreas={[
-                    `"."`,
-                    `"."`,
-                    `"title"
-                    "text"
-                    "button"`,
-                ]}
-            >
-                <GridItem gridArea="title" bg="purple">
-                    <h2>Memory title: {memory?.title}</h2>
-                </GridItem>
+	async function handleDeletion(id: string | undefined) {
+		const fetcher = await fetch(
+			`http://localhost:3000/api/delete-memory/${id}`,
+			{
+				method: "DELETE",
+			}
+		);
 
-                <GridItem gridArea="text" bg="orange">
-                    <p>{memory?.text}</p>
-                </GridItem>
+		const response = await fetcher.json();
 
-                <GridItem gridArea="button">
-                    <button
-                        className="button-back"
-                        onClick={() => {
-                        navigate(-1);
-                        }}
-                    >
-                        Back
-                    </button>
-                </GridItem>
-            </Grid>
-        </>
-    );
+		response === "deleted"
+			? window.alert("the memory has successfully been deleted")
+			: window.alert(
+				"there was an error during deletion, please contact dev team"
+			);
+	}
+
+	return (
+		<>
+			<section className="memory-detail-widget">
+				<header>
+					<h2>Memory title: {memory?.title}</h2>
+					<h3>Person: {handlePerson(person)}</h3>
+				</header>
+				<p>this is some dummy text {memory?.text}</p>
+				<button
+					className="button-back"
+					onClick={() => {
+					navigate(-1);
+					}}
+					>
+					Back
+				</button>
+				<button
+					onClick={() => {
+					handleDeletion(id);
+					navigate(-1);
+					}}
+					>
+					Delete
+				</button>
+				<button
+					onClick={() => {
+					navigate(`/app/edit-memory/${id}`);
+					}}
+					>
+					Edit
+				</button>
+			</section>
+		</>
+	);
 }
